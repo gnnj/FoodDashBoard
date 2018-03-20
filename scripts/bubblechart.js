@@ -22,8 +22,8 @@ var mainNote = svg.append("text")
 .style("fill", "#888888")
 .text(function(d) {return "D3.js bubble menu developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois.";});   
 
-
-d3.json("main_bubble.json", function(error, root) {
+//function to load json data into bubblechart
+d3.json("scripts/bubble_chart_content.json", function(error, root) {
     console.log(error);
  
     var bubbleObj = svg.selectAll(".topBubble")
