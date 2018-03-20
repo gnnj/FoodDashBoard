@@ -20,7 +20,7 @@ var mainNote = svg.append("text")
 .attr("dominant-baseline", "middle")
 .attr("alignment-baseline", "middle")
 .style("fill", "#888888")
-.text(function(d) {return "D3.js bubble menu developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois.";});   
+.text(function(d) {return "Test text";});   
 
 //function to load json data into bubblechart
 d3.json("../scripts/bubble_chart_content.json", function(error, root) {
@@ -115,7 +115,6 @@ svgContainer.style("height",h+"px");
 
     }
 
-     
     }); 
 
 resetBubbles = function () {
@@ -130,7 +129,7 @@ resetBubbles = function () {
   svg.attr("width", w);
   svg.attr("height",h);       
    
-  d3.select("#bubbleItemNote").text("D3.js bubble menu developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois.");
+  d3.select("#bubbleItemNote").text("Test selection d3 select");
    
   var t = svg.transition()
       .duration(650);
@@ -245,3 +244,4 @@ window.onresize = resetBubbles;
 
 
 
+//D3.js bubble menu originally developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois."
