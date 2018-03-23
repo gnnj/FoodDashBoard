@@ -24,18 +24,19 @@ var svg = d3
     .append("g")
       .attr("transform", "translate(" + chartWidth / 2 + ", " + chartHeight / 2 + ")");
 
-// Load data from vegetarian_restaurants_US_datafiniti.csv
-d3.csv("vegetarian_restaurants_US_datafiniti.csv", function(error, restaurantData) {
+// Load data from clean_no_index.json
+d3.json("clean_no_index.geojson", function(data) {
+    console.log(data);
 
   // If the browser encounters error in retrieving the file, generate an error message
-  if (error) throw error;
+ // if (error) throw error;
 
-  // Print the tvData
-  console.log(restaurantData);
+  // Print the restaurantData
+  console.log(data);
 
-  // Cast the states
-  restaurantData.forEach(function(data) {
-    data.province = +data.province;
+  // Cast the rate
+  data.features.forEach(function(response) {
+    response.cuisine_type = +response.cuisine_type;
   });
 
   // Create an ordinal scale using a built in D3 color palette as the range
@@ -48,26 +49,26 @@ d3.csv("vegetarian_restaurants_US_datafiniti.csv", function(error, restaurantDat
   // Configure an arc function that will be used to draw the paths making up the pie chart
   var arc = d3.arc().innerRadius(0).outerRadius(radius);
 
-  // Configure a pie function will be used to size slices in the pie chart according to proviences
+  // Configure a pie function will be used to size slices in the pie chart according to cuisine_type
   var pie = d3.pie().value(function(data) {
-    return data.province;
+    return data.cuisine_type;
   });
-
+console.log(data.features.cuisine_type);
   // Print the the transformed tvData returned by the pie function
-  console.log(pie(restaurantData));
+  console.log(pie(data));
 
   // transform the restaurantData with the pie function, append one path for each element in restaurantData
   // Use the arc function to draw the pie chart's paths
   svg
     .selectAll("path")
-      .data(pie(restaurantData))
+      .data(pie(data.features))
       .enter()
       .append("path")
         .attr("d", arc)
         .attr("fill", function(pieData) {
           console.log(pieData);
           console.log(pieData.data);
-          console.log(pieData.data.province);
-          return color(pieData.data.province);
+          console.log(pieData.data.cuisine_type);
+          return color(pieData.data.cuisine_type);
         });
 });
