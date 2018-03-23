@@ -245,3 +245,6 @@ window.onresize = resetBubbles;
 
 
 //D3.js bubble menu originally developed by Shipeng Sun (sunsp.gis@gmail.com), Institute of Environment, University of Minnesota, and University of Springfield, Illinois."
+//http://sunsp.net/demo/BubbleMenu/
+//http://sunsp.net/code/bubbleMenu.html
+//http://sunsp.net/code/main_bubble_json.html
