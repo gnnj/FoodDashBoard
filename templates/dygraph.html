@@ -9,15 +9,27 @@
     <title>DyGraph page</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--jquery import-->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
     <!--dygraph -->
     <script type="text/javascript" src="../scripts/dygraph.js"></script>
     <!--dygraph stylesheet -->
 	  <link rel="stylesheet" src="../scripts/dygraph.css" />
     <!--d3 v4 -->
     <script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script> 
+
+    <!--dygraph_code.js = the js file to create our chart-->
+    <script type="text/javascript" src="../scripts/dygraph_code.js"></script>
+
   </head>
 
   <body>
+
+  <!--dypgraph div hook -->
+  <div id="graphdiv"></div>
    
   	<!-- Bootstrap JS requirements: -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
