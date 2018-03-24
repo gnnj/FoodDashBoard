@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pie Chart</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+
+  </head>
+ <body>
+    <div class="container" style="width: 95%">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Jumbotron -->
+                <div class="jumbotron" style="text-align: center">
+                    <div class="container">
+                        <h1>Pie chart
+                            <br>
+                            Vegetopia Visualization
+                        </h1>
+                        <p>Use the interactive charts below to explore the dataset.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Main Body -->
+        <div class ="row">
+        		<!-- State selection Side Panel"-->
+        		<div class="col-md-12">
+        			 <div class="row">
+                    	<div class="col-md-12">
+
+            			<div class="panel panel-default" style="overflow:auto"; overflow-wrap:break-word">
+            				<div class ="panel-body" styles="background-color:#afd275">
+            					<div class="form-group">
+            						<label for ="selDataset">Choose a State:</label>
+
+            					</select>
+            				</div>
+
+            			</div>
+            		</div>
+
+            	 </div>
+                   
+                    <div class="row">
+                        <div class="col-md-12">
+
+                <!--Pie Chart -->
+                	<div class="col-md-12">
+                		<div id = "piePlot" style="width: 100%,height: 100%">
+
+                </div>
+        		</div>
+
+
+        		</div>
+    <script src="//index.js" type="text/javascript"></script>
+  </body>
+</html>
