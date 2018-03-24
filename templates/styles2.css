@@ -1,25 +1,42 @@
 /* Giving the body the specified background color, adding font sizes for the h1 and h3 elements we'll be using */
+.jumbotron {
+  background-color: #FFA07A;
+}
+
 body {
-  background: #f1f1f1;
+  background: #F08080;
+  padding-top: 0;
 }
 
 h1 {
-  font-size: 80px;
+  color: transparent;
+  text-align: center;
+  background-image: url(food.jpg);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 280px;
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 130px;
 }
 
+.collapse {
+  background: #DAF7A6;
+}
 /* Giving our navbar some padding and a background color */
 .navbar {
-  padding: 10px;
-  background: #5191fd;
+  padding: 100px;
+  background: #DAF7A6 !important;
+  opacity : 0.9;
+}
+.navbar-brand {
+  font-size: 20px;
 }
 
 .navbar2 {
-  padding: 10px;
-  background: #000000;
+  padding: 100px;
+  background: #DAF7A6;
 }
 
 /* Making our navbar li's inline-block elements this makes it so we can have multiple on the same line. Floats could have been used too */
@@ -27,7 +44,7 @@ h3 {
   display: inline-block;
   padding: 20px;
   margin-right: 10px;
-  margin-left: 10px;
+  margin-left: 100px;
   cursor: pointer;
   background: #fff;
   border-radius: 3px;
@@ -37,6 +54,16 @@ h3 {
 .navbar li a {
   color: #000;
   text-decoration: none;
+}
+
+.navbar ul li  {
+  display: inline-block;
+  padding: 20px;
+  margin-right: 10px;
+  margin-left: 100px;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 3px;
 }
 
 /* Styling the header, giving it a height, a background color, and some top padding */
