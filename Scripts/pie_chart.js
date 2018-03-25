@@ -1,4 +1,4 @@
-# create dropdown from Flask
+/*# create dropdown from Flask
 d3.json("/names", function(error, response){
 
 	if (error) return console.warn(error);
@@ -15,12 +15,33 @@ d3.json("/names", function(error, response){
 	}
 
 
-});
+});*/
 
 //Set the initial state value and graphs on the page
 var defaultState = "New Jersey"
 
-//Not sure if we need this function. This is for to display data for selected state.
+//Dropdown script 
+var data = ["NJ", "NY", "CA"];
+
+var select = d3.select('body')
+  .append('select')
+    .attr('class','select')
+    .on('change',onchange)
+
+var options = select
+  .selectAll('option')
+    .data(data).enter()
+    .append('option')
+        .text(function (d) { return d; });
+
+function onchange() {
+    selectValue = d3.select('select').property('value')
+    d3.select('body')
+        .append('p')
+        .text(selectValue + ' is the last selected option.')
+};
+
+/*//Not sure if we need this function. This is for to display data for selected state.
  function init(sample){
     // Sample metadata panel
     d3.json("/metadata/" + sample, function(error, response){
@@ -108,4 +129,4 @@ function updatePie(newValues, newLabels, newNames, sample_name){
     console.log("Pass")
 };
 //Handle the new get request for choice
-d3.jason("/samples" + )
+d3.jason("/samples" + )*/

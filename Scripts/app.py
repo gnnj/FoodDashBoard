@@ -45,17 +45,23 @@ class Vegetarian(Base):
     latitude = Column(Float)
     longitude = Column(Float)
 
+# Create Routes
+
 @app.route("/")
 def home():
 	    return (
         f"Available Routes:<br/>"
         f"/map<br/>"
-        f"/bubble_chart<br/>"
+       	f"/bubble_chart<br/>"
         f"/by_state<br/>"
         f"/by_type<br/>"
         f"/by_rating<br/>"
     )
-    return render_template("pie_chart.html")
+    
+
+#@app.route("/")
+#def home():
+    #return render_template("pie_chart.html")
 
 @app.route("/map")
 def map_data():
@@ -79,6 +85,12 @@ def map_data():
 
 
 # @app.route("/bubble_chart")
+
+@app.route("/names")
+def names():
+    sample_names = Samples.__table__.columns
+    sample_names_ls = [name.key for name in sample_names]
+    return jsonify(sample_names_ls)
 
 @app.route("/by_state")
 def by_state():
