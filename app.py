@@ -23,7 +23,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, desc, distinct
 
 #Create engine
-engine = create_engine("sqlite:///sqldata/clean_test.db",echo=False) #Set echo=True for debugging
+engine = create_engine("sqlite:///clean_complete_dataset.db",echo=False) #Set echo=True for debugging
 #inspector = inspect(engine)
 Base = declarative_base()
 conn = engine.connect()

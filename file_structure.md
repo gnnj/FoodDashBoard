@@ -11,7 +11,7 @@ File structure for FoodDashBoard Project:
 
 /scripts_dependency - Required library and source files for D3/.js visualizations.
 
-/scripts - Custom Javascript and CSS stylesheets for D3/.js visualizations (references the reference the /scripts_dependency folder.)
+/scripts - Custom Javascript and CSS stylesheets for D3/.js visualizations (references the /scripts_dependency folder.)
 
 /sqldata/clean_complete_dataset.db - Final dataset in SQLite database format.
 
