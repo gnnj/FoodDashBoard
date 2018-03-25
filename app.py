@@ -23,7 +23,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, desc, distinct
 
 #Create engine
-engine = create_engine("sqlite:///data.db",echo=True) #Set echo=True for debugging
+engine = create_engine("sqlite:///sqldata/clean_test.db",echo=False) #Set echo=True for debugging
 #inspector = inspect(engine)
 Base = declarative_base()
 conn = engine.connect()
@@ -47,8 +47,13 @@ class Vegetarian(Base):
 
 @app.route("/")
 def home():
-	    return render_template("index.html")
+	    return render_template('index_placeholder.html')
 
+@app.route("/dygraph")
+def dygraph():
+	    return render_template('dygraph.html')
+
+#Returns complete dataset as a JSON response
 @app.route("/map")
 def map_data():
 	results = session.query(Vegetarian).all()
@@ -68,7 +73,6 @@ def map_data():
 		all_restaurants_dict["longitude"] = restaurant.longitude
 		all_restaurants.append(all_restaurants_dict)
 	return jsonify(all_restaurants)
-
 
 # @app.route("/bubble_chart")
 
