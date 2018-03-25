@@ -1,10 +1,8 @@
- #Implementation and testing of JSON from list/dict object 
- #Precursor to flask routes
-
 #Imports
 import pandas as pd
 from datetime import datetime
 import csv
+import numpy as np
 
 #Sqlalchemy imports
 from sqlalchemy import Column, Float, Integer, String, DateTime
@@ -15,18 +13,18 @@ from sqlalchemy import create_engine,inspect,func
 # Flask imports
 from flask import Flask, jsonify, render_template
 
-#Flask set up
+# Flask set up
 app = Flask(__name__)
 
-#Database setup connection 
+# Database setup and connection
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, desc 
+from sqlalchemy import create_engine, desc, distinct
 
- #Create engine
-engine = create_engine("sqlite:///../sqldata/clean_test.db",echo=False) #Set echo=True for debugging
-inspector = inspect(engine)
+#Create engine
+engine = create_engine("sqlite:///data.db",echo=True) #Set echo=True for debugging
+#inspector = inspect(engine)
 Base = declarative_base()
 conn = engine.connect()
 session = Session(bind=engine)
@@ -47,12 +45,58 @@ class Vegetarian(Base):
     latitude = Column(Float)
     longitude = Column(Float)
 
-# Create Session 
-session = Session(engine)
-
-
-# Create Routes
 @app.route("/")
 def home():
-    return render_template("index.html")
+	    return (
+        f"Available Routes:<br/>"
+        f"/map<br/>"
+        f"/bubble_chart<br/>"
+        f"/by_state<br/>"
+        f"/by_type<br/>"
+        f"/by_rating<br/>"
+    )
+    return render_template("pie_chart.html")
 
+@app.route("/map")
+def map_data():
+	results = session.query(Vegetarian).all()
+	all_restaurants = []
+	for restaurant in results:
+		all_restaurants_dict = {}
+		all_restaurants_dict["restaurant_name"] = restaurant.restaurant_name
+		all_restaurants_dict["address"] = restaurant.address
+		all_restaurants_dict["city"] = restaurant.city
+		all_restaurants_dict["state"] = restaurant.state
+		all_restaurants_dict["zip_code"] = restaurant.zip_code
+		all_restaurants_dict["phone"] = restaurant.phone
+		all_restaurants_dict["cuisine_type"] = restaurant.cuisine_type
+		all_restaurants_dict["rating"] = restaurant.rating
+		all_restaurants_dict["price"] = restaurant.price
+		all_restaurants_dict["latitude"] = restaurant.latitude
+		all_restaurants_dict["longitude"] = restaurant.longitude
+		all_restaurants.append(all_restaurants_dict)
+	return jsonify(all_restaurants)
+
+
+# @app.route("/bubble_chart")
+
+@app.route("/by_state")
+def by_state():
+	results = session.query(Vegetarian.state, func.count(Vegetarian.state)).group_by(Vegetarian.state).all()
+	state_data = results
+	return jsonify(state_data)
+
+@app.route("/by_type")
+def by_type():
+	results = session.query(Vegetarian.cuisine_type, func.count(Vegetarian.cuisine_type)).group_by(Vegetarian.cuisine_type).all()
+	type_data = results
+	return jsonify(type_data)
+
+@app.route("/by_rating")
+def by_rating():
+	results = session.query(Vegetarian.rating, func.count(Vegetarian.rating)).group_by(Vegetarian.rating).all()
+	rating_data = results
+	return jsonify(rating_data)
+
+if __name__ == '__main__':
+    app.run(debug=True)
