@@ -47,15 +47,7 @@ class Vegetarian(Base):
 
 @app.route("/")
 def home():
-	    return (
-        f"Available Routes:<br/>"
-        f"/map<br/>"
-        f"/bubble_chart<br/>"
-        f"/by_state<br/>"
-        f"/by_type<br/>"
-        f"/by_rating<br/>"
-    )
-#    return render_template("index.html")
+	    return render_template("index.html")
 
 @app.route("/map")
 def map_data():
