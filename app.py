@@ -82,32 +82,21 @@ def map_data():
 
 @app.route("/by_state")
 def by_state():
-	results = session.query(Vegetarian).all()
-	states = []
-	for restaurant in results:
-		state_dict = {}
-		state_dict["restaurant_name"] = restaurant.restaurant_name
-		state_dict["address"] = restaurant.address
-		state_dict["city"] = restaurant.city
-		state_dict["state"] = restaurant.state
-		state_dict["zip_code"] = restaurant.zip_code
-		state_dict["phone"] = restaurant.phone
-		state_dict["cuisine_type"] = restaurant.cuisine_type
-		state_dict["rating"] = restaurant.rating
-		state_dict["price"] = restaurant.price
-		state_dict["latitude"] = restaurant.latitude
-		state_dict["longitude"] = restaurant.longitude
-		states.append(state_dict)
-		st = df.states.groupby(by='state')
-		print(st)
-	return jsonify(st)
+	results = session.query(Vegetarian.state, func.count(Vegetarian.state)).group_by(Vegetarian.state).all()
+	state_data = results
+	return jsonify(state_data)
 
+@app.route("/by_type")
+def by_type():
+	results = session.query(Vegetarian.cuisine_type, func.count(Vegetarian.cuisine_type)).group_by(Vegetarian.cuisine_type).all()
+	type_data = results
+	return jsonify(type_data)
 
-
-
-# @app.route("/by_type")
-
-# @app.route("/by_rating")
+@app.route("/by_rating")
+def by_rating():
+	results = session.query(Vegetarian.rating, func.count(Vegetarian.rating)).group_by(Vegetarian.rating).all()
+	rating_data = results
+	return jsonify(rating_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
