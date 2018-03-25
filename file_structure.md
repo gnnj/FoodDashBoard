@@ -16,3 +16,5 @@ File structure for FoodDashBoard Project:
 /sqldata/clean_complete_dataset.db - Final dataset in SQLite database format.
 
 /templates - HTML structure for dashboard deployment including individual pages. 
+
+app.py - Python + Flask for localized dashboard deployment. 

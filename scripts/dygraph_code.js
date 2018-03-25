@@ -1,5 +1,5 @@
- $(document).ready(function () {
-      new Dygraph(
+$(document).ready(function () {
+    new Dygraph(
 
     // containing div
     document.getElementById("graphdiv"),
@@ -12,7 +12,7 @@
                 //create an array each loop grab value from array ---> then push to extermine
               ],
               { //Dygraph chart options
-                labels: [ "Rating", "A" ],
+                labels: [ "Price Range", "Rating" ],
                 showRangeSelector: true,
                 rangeSelectorHeight: 30,
                 legend: 'always',

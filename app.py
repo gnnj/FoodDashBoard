@@ -23,7 +23,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, desc, distinct
 
 #Create engine
-engine = create_engine("sqlite:///clean_complete_dataset.db",echo=False) #Set echo=True for debugging
+engine = create_engine("sqlite:///sqldata/clean_complete_dataset.db",echo=False) #Set echo=True for debugging
 #inspector = inspect(engine)
 Base = declarative_base()
 conn = engine.connect()
@@ -52,6 +52,13 @@ def home():
 @app.route("/dygraph")
 def dygraph():
 	    return render_template('dygraph.html')
+
+@app.route("/by_state/<state>")
+def by_state_test(state):
+	state_query = state
+	result = session.query(Vegetarian.state, state_query).group_by(Vegetarian.state).all() 
+	return jsonify(result)
+
 
 #Returns complete dataset as a JSON response
 @app.route("/map")
