@@ -36,7 +36,7 @@ var label = d3.arc()
     .outerRadius(radius - 40)
     .innerRadius(radius - 40);
 
-d3.csv("../scripts/piechart_placeholderdata.csv", function(d) {
+d3.csv("scripts/piechart_placeholderdata.csv", function(d) {
   d.population = +d.population;
   return d;
 }, function(error, data) {

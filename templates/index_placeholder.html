@@ -9,24 +9,34 @@
     <title>Placeholder title</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <!--local stylesheet -->
-    <link rel="stylesheet" href="../scripts/stylesheet.css" type="text/css">
+    <!---<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+    
+    <!--local stylesheet with flask specific routing specified -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheet.css') }}">
+
     <!--d3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
   </head>
 
   <body>
     <!--temporary piechart1 page link-->
-    <a href="piechart1.html">Piechart1</a>
+    <p><a href="piechart1.html">Piechart1</a></p>
+    
+    <p><a href="{{ url_for('piechart1') }}">Piechart1 Flask</a></p>
     
      <!--temporary piechart2 page link-->
-    <a href="piechart2.html">Piechart2</a>
+    <p><a href="piechart2.html">Piechart2</a></p>
+    
 
     <!--temporary dygraph page link-->
-    <a href="dygraph.html">Dygraph</a>
+    <p><a href="dygraph.html">Dygraph</a></p>
+    
     
     <!--temporary bubblechart page link-->
-    <a href="bubblechart.html">Bubblechart</a>
+    <p><a href="bubblechart.html">Bubblechart</a></p>
+    
 
 
   	<!-- Bootstrap JS requirements: -->

@@ -13,6 +13,7 @@ from sqlalchemy import create_engine,inspect,func
 # Flask imports
 from flask import Flask, jsonify, render_template
 
+
 # Flask set up
 app = Flask(__name__)
 
@@ -47,17 +48,24 @@ class Vegetarian(Base):
 
 @app.route("/")
 def home():
-	    return render_template('index_placeholder.html')
+	return render_template('index_placeholder.html')
 
 @app.route("/dygraph")
 def dygraph():
 	    return render_template('dygraph.html')
 
-@app.route("/by_state/<state>")
-def by_state_test(state):
-	state_query = state
-	result = session.query(Vegetarian.state, state_query).group_by(Vegetarian.state).all() 
-	return jsonify(result)
+@app.route("/piechart1")
+def piechart1():
+	df = pd.read_csv('scripts/piechart_placeholderdata.csv')
+	print(df)
+	return render_template('piechart1.html')
+
+
+# @app.route("/by_state/<state>")
+# def by_state_test(state):
+# 	state_query = state
+# 	result = session.query(Vegetarian.state, state_query).group_by(Vegetarian.state).all() 
+# 	return jsonify(result)
 
 
 #Returns complete dataset as a JSON response

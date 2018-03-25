@@ -13,6 +13,8 @@ File structure for FoodDashBoard Project:
 
 /scripts - Custom Javascript and CSS stylesheets for D3/.js visualizations (references the /scripts_dependency folder.)
 
+/static - Required for Flask static file reference (i.e. CSS for specific resources).
+
 /sqldata/clean_complete_dataset.db - Final dataset in SQLite database format.
 
 /templates - HTML structure for dashboard deployment including individual pages. 
