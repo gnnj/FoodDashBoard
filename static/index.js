@@ -24,10 +24,5 @@ function dropDownEvent() {
 // Set the intial values and graphs on the page
 var defaultState= "NY"
 
-
-
-
-
-
 init(defaultState);
 dropDownEvent();

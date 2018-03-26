@@ -25,7 +25,9 @@
 
     <!-- externally hosted dygraph refs -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" /> -->
+    <!--local stylesheet with flask specific routing specified -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='dygraph.css') }}">
 
 
 
