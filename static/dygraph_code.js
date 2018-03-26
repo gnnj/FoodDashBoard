@@ -1,33 +1,42 @@
-//Javascript for dygraph
 
-d3.json("/states", function(error, response) {
-
+$(document).ready(function(){
+    
+d3.json("/states", function(error, data) {
     if (error) return console.warn(error);
 
-    // console.log(response);
-
-    var $dropDown = document.getElementById("selDataset")
-
-    for (var i=0; i< response.length; i++){
-        var $optionChoice = document.createElement("option");
-        $optionChoice.innerHTML = response[i];
-        $optionChoice.setAttribute("value", response[i]);
-        $dropDown.appendChild($optionChoice);
-    }
+    for (var i = 0; i < data.length; i++) {
+        console.log(data[i+1]); // this is your data
+        }
+    
 });
 
+// Create dropdown menu
+function dropDownEvent() {
+    d3.json("/states", function (error, response) {
+
+        if (error) return console.warn(error);
+
+        // console.log(response);
+
+        var selector = document.getElementById("selDataset")
+
+        for (var i = 1; i < response.length; i++) {
+            var currentOption = document.createElement("option");
+            currentOption.innerHTML = response[i];
+            currentOption.value = response[i];
+            selector.appendChild(currentOption);
+        }
+    });
+};
+
 // Set the intial values and graphs on the page
-var defaultState= "NY"
+/*var defaultState= "NY"
 
-init(defaultState);
-dropDownEvent();
-
-
+init(defaultState);*/
 
 //////////////////////////////////////////////////////////////////////////////////
+//Javascript for dygraph
 
-
-$(document).ready(function () {
     new Dygraph(
 
     // containing div
@@ -51,11 +60,10 @@ $(document).ready(function () {
                 xlabel: 'Price range',
                 showLabelsOnHighlight: true
     })
- });   
 
+dropDownEvent();
 
-//Price - string/varchar
-//Rating - int
+});
 
 //display as key on hover (if possible)
 /*$= under $10 (5-10)
@@ -64,13 +72,9 @@ $$$= $31-$60
 $$$$= above $61*/
 
 //State? - string/varchar
-
-
 //Flask route that returns price translated to the above the approx range for signs
 // and is responsive by state
-
 //http://dygraphs.com/options.html#Chart%20labels
-
 //https://developers.google.com/chart/interactive/docs/reference?csw=1#QueryResponse_getDataTable
 //https://developers.google.com/chart/interactive/docs/reference?csw=1#DataTable
 

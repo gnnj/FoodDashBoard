@@ -9,11 +9,9 @@ File structure for FoodDashBoard Project:
 
 /rawdata - Folder for raw data import and subset of said data prior to cleaning/engineering and API
 
-/scripts_dependency - Required library and source files for D3/.js visualizations.
-
 /scripts - Custom Javascript and CSS stylesheets for D3/.js visualizations (references the /scripts_dependency folder.)
 
-/static - Required for Flask static file reference (i.e. CSS for specific resources).
+/static - Required for Flask static file reference (i.e. CSS for specific resources) + Required library and source files for D3/.js visualizations.
 
 /sqldata/clean_complete_dataset.db - Final dataset in SQLite database format.
 
