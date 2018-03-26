@@ -67,12 +67,12 @@ def piechart1():
 	return render_template('piechart1.html', data =data)
 	#return jsonify(data)
 
-
+#by_state_test() route working:
 @app.route("/by_state/<state>")
 def by_state_test(state):
 	state = state.strip()
-	results = session.query(Vegetarian.state,Vegetarian.rating,Vegetarian.price).group_by(Vegetarian.state).filter_by(state = state).all()
-	results_dict = {}
+	results = session.query(Vegetarian.state,Vegetarian.price,Vegetarian.rating).filter(Vegetarian.state == state).all()
+	#print(results)
 	#for result in results:
 		#results_dict["state"]=result[0]	
 	return(jsonify(results))
