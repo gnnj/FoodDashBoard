@@ -68,11 +68,15 @@ def piechart1():
 	#return jsonify(data)
 
 
-# @app.route("/by_state/<state>")
-# def by_state_test(state):
-# 	state_query = state
-# 	result = session.query(Vegetarian.state, state_query).group_by(Vegetarian.state).all() 
-# 	return jsonify(result)
+@app.route("/by_state/<state>")
+def by_state_test(state):
+	state = state.strip()
+	results = session.query(Vegetarian.state,Vegetarian.rating,Vegetarian.price).group_by(Vegetarian.state).filter_by(state = state).all()
+	results_dict = {}
+	#for result in results:
+		#results_dict["state"]=result[0]	
+	return(jsonify(results))
+	
 
 
 #Returns complete dataset as a JSON response
