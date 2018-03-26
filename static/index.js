@@ -1,12 +1,12 @@
 //Javascript for index page
 
-
 // Create dropdown from Flask
-d3.json("/states", function(error, response) {
+d3.json("/state", function(error, response) {
 
     if (error) return console.warn(error);
 
-    // console.log(response);
+    console.log(response);
+   	
 
     var $dropDown = document.getElementById("selDataset")
 
@@ -16,3 +16,4 @@ d3.json("/states", function(error, response) {
         $optionChoice.setAttribute("value", response[i]);
         $dropDown.appendChild($optionChoice);
     }
+});

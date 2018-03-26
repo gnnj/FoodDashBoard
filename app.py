@@ -68,17 +68,23 @@ def piechart1():
 	#return jsonify(data)
 
 #by_state_test() route working:
+#returns price and rating for selected state
 @app.route("/by_state/<state>")
 def by_state_test(state):
+
 	state = state.strip()
-	results = session.query(Vegetarian.state,Vegetarian.price,Vegetarian.rating).filter(Vegetarian.state == state).all()
-	#print(results)
-	#for result in results:
-		#results_dict["state"]=result[0]	
+	results = session.query(Vegetarian.state,Vegetarian.price,Vegetarian.rating).filter(Vegetarian.state == state).all()	
 	return(jsonify(results))
-	
 
+#/states route for dropdown selector
+@app.route("/states")
+def states():
+	results = session.query(Vegetarian.state).distinct().all()
+	state_data = results
+	return(jsonify(list(state_data)))
+	#return jsonify(state_data)
 
+   
 #Returns complete dataset as a JSON response
 @app.route("/map")
 def map_data():
