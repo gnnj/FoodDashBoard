@@ -23,45 +23,41 @@
   <body>
     <!--temporary piechart1 page link-->
     <!-- <p><a href="piechart1.html">Piechart1</a></p> -->
-    <!--FLASK piechart1 page link-->
+    
     <p><a href="{{ url_for('piechart1') }}">Piechart1 Flask</a></p>
     
-    <!--temporary piechart2 page link-->
-    <!-- <p><a href="piechart2.html">Piechart2</a></p> -->
-    <p><a href="{{ url_for('piechart2') }}">Piechart2 Flask</a></p>
-    
+     <!--temporary piechart2 page link-->
+    <!-- <p><a href="piechart2.html">Piechart2</a></p>
+     -->
 
     <!--temporary dygraph page link-->
     <!-- <p><a href="dygraph.html">Dygraph</a></p> -->
-    <!--FLASK dygraph page link-->
+
     <p><a href="{{ url_for('dygraph') }}">Dygraph Flask</a></p>
     
     
     <!--temporary bubblechart page link-->
-    <!-- <p><a href="bubblechart.html">Bubblechart</a></p> -->
-    <p><a href="{{ url_for('bubblechart') }}">Bubblechart Flask</a></p>
+    <p><a href="bubblechart.html">Bubblechart</a></p>
 
     <!--dropdown selector-->
     <div class="panel panel-default" style="overflow:auto; overflow-wrap:break-word">
       <div class="panel-body" style="background-color: #eee">
         <div class="form-group">
           <label for="selDataset">Choose a State:</label>
-            <!--selDataset bind for dropdown/flask-->
             <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
       </div>
     </div>    
     
 
-  	<!-- Bootstrap JS requirements: -->
+    <!-- Bootstrap JS requirements: -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- js/d3 main for index.html  -->
    
-    <!-- temporary js/d3 main for index.html  -->
     <!--<script src="index.js" type="text/javascript"></script>-->
 
-    <!--FLASK js/d3 main for index.html-->
     <script src="{{url_for('static', filename='index.js')}}"></script>
   </body>
 
