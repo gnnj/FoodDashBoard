@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    
+function stateList(){    
 d3.json("/states", function(error, data) {
     if (error) return console.warn(error);
 
@@ -8,7 +8,8 @@ d3.json("/states", function(error, data) {
         console.log(data[i+1]); // this is your data
         }
     
-});
+    });
+};
 
 // Create dropdown menu
 function dropDownEvent() {
@@ -34,19 +35,27 @@ var defaultState = "NY"
 function init(state){
     d3.json("/by_state/" + state, function(error, response){
         if (error) return console.warn(error);
-        //var responseKeys = Object.keys(response);
-        //console.log (responseKeys);
-        for (var i = 0; i < response.length; i++) {
-            console.log(response[i+1]); // this is your data
-        }
-    
-        // Identify the correct div
-        //var $sampleInfoPanel = document.querySelector("#sample-metadata");
-       
-        // Reset HTML to nothing
-        //$sampleInfoPanel.innerHTML = null;
+        var newArr = [];
+       /* for (var i = 0; i < response.length; i++) {
+            console.log(response[i+1]); 
+        }*/
 
-        // Loop through response keys and create a P element for each
+        //console.log(response[0][0]);
+        for (var i = 0; i < response.length; i++) {
+            newArr = response.shift();
+            newArr.shift();
+            newArr = newArr;
+            //console.log(newArr);
+        }  
+
+        var priceModifiedArr = newArr
+
+        newArr.map(function(element,index){
+            return newArr.index;
+            
+        });
+    
+
         });
 };
 
@@ -79,14 +88,16 @@ function init(state){
 
 dropDownEvent();
 init(defaultState);
-
 });
+
+
+
 
 //display as key on hover (if possible)
 /*$= under $10 (5-10)
-$$= $11-$30
-$$$= $31-$60
-$$$$= above $61*/
+$$= $11-$30 [11]
+$$$= $31-$60 [31]
+$$$$= above $61*/ [61]
 
 //State? - string/varchar
 //Flask route that returns price translated to the above the approx range for signs
