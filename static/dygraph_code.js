@@ -1,24 +1,26 @@
+//Javascript for dygraph
 
-// Create dropdown menu
-function dropDownEvent() {
-    Plotly.d3.json("/states", function (error, response) {
+d3.json("/states", function(error, response) {
 
-        if (error) return console.warn(error);
+    if (error) return console.warn(error);
 
-        // console.log(response);
+    // console.log(response);
 
-        var selector = document.getElementById("selDataset")
+    var $dropDown = document.getElementById("selDataset")
 
-        for (var i = 0; i < response.length; i++) {
-            var currentOption = document.createElement("option");
-            currentOption.innerHTML = response[i];
-            currentOption.value = response[i];
-            selector.appendChild(currentOption);
-        }
-    });
-};
+    for (var i=0; i< response.length; i++){
+        var $optionChoice = document.createElement("option");
+        $optionChoice.innerHTML = response[i];
+        $optionChoice.setAttribute("value", response[i]);
+        $dropDown.appendChild($optionChoice);
+    }
+});
 
+// Set the intial values and graphs on the page
+var defaultState= "NY"
 
+init(defaultState);
+dropDownEvent();
 
 
 
@@ -51,10 +53,7 @@ $(document).ready(function () {
     })
  });   
 
-var defaultState= "NY"
 
-init(defaultState);
-dropDownEvent();
 //Price - string/varchar
 //Rating - int
 

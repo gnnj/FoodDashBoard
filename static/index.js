@@ -2,7 +2,7 @@
 
 // Create dropdown menu
 function dropDownEvent() {
-	Plotly.d3.json("/states", function (error, response) {
+	d3.json("/states", function (error, response) {
 
 		if (error) return console.warn(error);
 
