@@ -10,20 +10,19 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine,inspect,func
+from sqlalchemy import desc,asc
 # Flask imports
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, Markup
+
+import json
+
 
 # Flask set up
 app = Flask(__name__)
 
-# Database setup and connection
-import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, desc, distinct
 
 #Create engine
-engine = create_engine("sqlite:///data.db",echo=True) #Set echo=True for debugging
+engine = create_engine("sqlite:///clean_complete_dataset.db",echo=False) #Set echo=True for debugging
 #inspector = inspect(engine)
 Base = declarative_base()
 conn = engine.connect()
@@ -44,59 +43,56 @@ class Vegetarian(Base):
     price = Column(String)
     latitude = Column(Float)
     longitude = Column(Float)
-
+ 
 @app.route("/")
-def home():
-	    return (
-        f"Available Routes:<br/>"
-        f"/map<br/>"
-        f"/bubble_chart<br/>"
-        f"/by_state<br/>"
-        f"/by_type<br/>"
-        f"/by_rating<br/>"
-    )
-#    return render_template("index.html")
-
-@app.route("/map")
-def map_data():
+def state_chart():
 	results = session.query(Vegetarian).all()
-	all_restaurants = []
+	state = []
 	for restaurant in results:
-		all_restaurants_dict = {}
-		all_restaurants_dict["restaurant_name"] = restaurant.restaurant_name
-		all_restaurants_dict["address"] = restaurant.address
-		all_restaurants_dict["city"] = restaurant.city
-		all_restaurants_dict["state"] = restaurant.state
-		all_restaurants_dict["zip_code"] = restaurant.zip_code
-		all_restaurants_dict["phone"] = restaurant.phone
-		all_restaurants_dict["cuisine_type"] = restaurant.cuisine_type
-		all_restaurants_dict["rating"] = restaurant.rating
-		all_restaurants_dict["price"] = restaurant.price
-		all_restaurants_dict["latitude"] = restaurant.latitude
-		all_restaurants_dict["longitude"] = restaurant.longitude
-		all_restaurants.append(all_restaurants_dict)
-	return jsonify(all_restaurants)
-
-
-# @app.route("/bubble_chart")
-
-@app.route("/by_state")
-def by_state():
-	results = session.query(Vegetarian.state, func.count(Vegetarian.state)).group_by(Vegetarian.state).all()
-	state_data = results
-	return jsonify(state_data)
+	    state_dict = {}
+	    #state_dict["restaurant_name"] = restaurant.restaurant_name
+	    state_dict["state"] = restaurant.state
+	    state.append(state_dict)
+	all_restaurants_df = pd.DataFrame(state)
+	count = all_restaurants_df['state'].value_counts().tolist()
+	count_index = all_restaurants_df['state'].value_counts().index.tolist()
+	labels = count_index
+	values = count
+	return render_template('state.html', values=values, labels=labels)
 
 @app.route("/by_type")
-def by_type():
-	results = session.query(Vegetarian.cuisine_type, func.count(Vegetarian.cuisine_type)).group_by(Vegetarian.cuisine_type).all()
-	type_data = results
-	return jsonify(type_data)
+def type_chart():
+	results = session.query(Vegetarian).all()
+	food_type = []
+	for restaurant in results:
+		food_type_dict = {}
+		food_type_dict["cuisine_type"] = restaurant.cuisine_type
+		food_type.append(food_type_dict)
+	food_type_df = pd.DataFrame(food_type)
+	food_type_df
+	count = food_type_df['cuisine_type'].value_counts().tolist()
+	count_index = food_type_df['cuisine_type'].value_counts().index.tolist()
+	count_index
+	labels = count_index
+	values = count
+	return render_template('type.html', values=values, labels=labels)
 
-@app.route("/by_rating")
-def by_rating():
-	results = session.query(Vegetarian.rating, func.count(Vegetarian.rating)).group_by(Vegetarian.rating).all()
-	rating_data = results
-	return jsonify(rating_data)
-
+@app.route("/pie")
+def pie_chart():
+	results = session.query(Vegetarian).all()
+	state = []
+	for restaurant in results:
+	    state_dict = {}
+	    #state_dict["restaurant_name"] = restaurant.restaurant_name
+	    state_dict["state"] = restaurant.state
+	    state.append(state_dict)
+	all_restaurants_df = pd.DataFrame(state)
+	count = all_restaurants_df['state'].value_counts().tolist()
+	count_index = all_restaurants_df['state'].value_counts().index.tolist()
+	labels = count_index
+	values = count
+	colors = ["#CCCCCC", "#CCCCFF", "#FFCCFF", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#CC9900", "#CC9933", "#CC9966", "#CC9999", "#CC99CC", "#CC99FF", "#FF99FF", "#FF99CC", "#FF9999", "#FF9966", "#FF9933", "#FF9900", "#CC6600", "#CC6633", "#CC6666", "#CC6699", "#CC66CC", "#CC66FF", "#FF66FF", "#FF66CC", "#FF6699", "#FF6666", "#FF6633", "#FF6600", "#CC3300", "#CC3333", "#CC3366", "#CC3399", "#CC33CC", "#CC33FF", "#FF33FF", "#FF33CC", "#FF3399", "#FF3366", "#FF3333", "#FF3300", "#CC0000", "#CC0033", "#CC0066", "#CC0099", "#CC00CC", "#CC00FF"]
+	return render_template('pie_chart.html', set=zip(values, labels, colors))
+ 
 if __name__ == '__main__':
     app.run(debug=True)
