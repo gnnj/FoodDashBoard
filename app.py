@@ -53,20 +53,23 @@ class Vegetarian(Base):
 def home():
 	return render_template('index_placeholder.html')
 
+#piechart route/not working currently
+@app.route("/piechart1")
+def piechart1():
+	# df = pd.read_csv('scripts/piechart_placeholderdata.csv')
+	# data = df.to_dict(orient='records')
+	# print(data)
+	# data= json.dumps(data, indent=2)
+	# data = {'data': data}
+	# jsonify(data)
+	# return render_template('piechart1.html', data =data)
+	#return jsonify(data)
+	return ""
+
+#dygraph route
 @app.route("/dygraph")
 def dygraph():
 	    return render_template('dygraph.html')
-
-@app.route("/piechart1")
-def piechart1():
-	df = pd.read_csv('scripts/piechart_placeholderdata.csv')
-	data = df.to_dict(orient='records')
-	print(data)
-	data= json.dumps(data, indent=2)
-	data = {'data': data}
-	#jsonify(data)
-	return render_template('piechart1.html', data =data)
-	#return jsonify(data)
 
 #by_state_test() route working:
 #returns price and rating for selected state
@@ -81,14 +84,11 @@ def by_state_test(state):
 @app.route("/states")
 def states():
 	results = session.query(Vegetarian.state).order_by(asc(Vegetarian.state)).distinct().all()
-
 	return(jsonify(list(results)))
 
 
-
-   
 #Returns complete dataset as a JSON response
-@app.route("/map")
+@app.route("/map_data")
 def map_data():
 	results = session.query(Vegetarian).all()
 	all_restaurants = []
@@ -107,8 +107,6 @@ def map_data():
 		all_restaurants_dict["longitude"] = restaurant.longitude
 		all_restaurants.append(all_restaurants_dict)
 	return jsonify(all_restaurants)
-
-# @app.route("/bubble_chart")
 
 @app.route("/by_state")
 def by_state():

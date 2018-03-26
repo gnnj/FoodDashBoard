@@ -29,10 +29,26 @@ function dropDownEvent() {
     });
 };
 
-// Set the intial values and graphs on the page
-/*var defaultState= "NY"
+var defaultState = "NY"
 
-init(defaultState);*/
+function init(state){
+    d3.json("/by_state/" + state, function(error, response){
+        if (error) return console.warn(error);
+        //var responseKeys = Object.keys(response);
+        //console.log (responseKeys);
+        for (var i = 0; i < response.length; i++) {
+            console.log(response[i+1]); // this is your data
+        }
+    
+        // Identify the correct div
+        //var $sampleInfoPanel = document.querySelector("#sample-metadata");
+       
+        // Reset HTML to nothing
+        //$sampleInfoPanel.innerHTML = null;
+
+        // Loop through response keys and create a P element for each
+        });
+};
 
 //////////////////////////////////////////////////////////////////////////////////
 //Javascript for dygraph
@@ -62,6 +78,7 @@ init(defaultState);*/
     })
 
 dropDownEvent();
+init(defaultState);
 
 });
 

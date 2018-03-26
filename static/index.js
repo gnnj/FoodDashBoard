@@ -1,14 +1,5 @@
 //Javascript for index page
 $(document).ready(function(){
-	
-d3.json("/states", function(error, data) {
-	if (error) return console.warn(error);
-
-	for (var i = 0; i < data.length; i++) {
-		console.log(data[i+1]); // this is your data
-		}
-    
-});
 
 // Create dropdown menu
 function dropDownEvent() {
