@@ -17,32 +17,37 @@
    
     <!--dygraph -->
     <!--<script type="text/javascript" src="dygraph.js"></script>-->
-    <script src="{{url_for('static', filename='dygraph.js')}}"></script>
+    <!-- <script src="{{url_for('static', filename='dygraph.js')}}"></script> -->
 
     <!--dygraph stylesheet -->
-	  <link rel="stylesheet" src="dygraph.css" /> 
+	  <!-- <link rel="stylesheet" src="dygraph.css" />  -->
     <!--<script src="{{url_for('static', filename='dygraph.css')}}"></script>-->
+
+    <!-- externally hosted dygraph refs -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+
+
 
     <!--d3 v4 -->
     <script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script> 
 
-    <!--dygraph_code.js = the js file to create our chart-->
-    <!--<script type="text/javascript" src="dygraph_code.js"></script>-->
-    <script src="{{url_for('static', filename='dygraph_code.js')}}"></script>
+
     
 
   </head>
 
   <body>
 
-<div class="panel panel-default" style="overflow:auto; overflow-wrap:break-word">
-  <div class="panel-body" style="background-color: #eee">
-    <div class="form-group">
-      <label for="selDataset">Choose a State:</label>
-        <select id="selDataset" onchange="optionChanged(this.value)"></select>
-    </div>
-  </div>
-</div>
+ <!--dropdown selector-->
+    <div class="panel panel-default" style="overflow:auto; overflow-wrap:break-word">
+      <div class="panel-body" style="background-color: #eee">
+        <div class="form-group">
+          <label for="selDataset">Choose a State:</label>
+            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+      </div>
+    </div>    
   <!--dypgraph div hook -->
   <div id="graphdiv" style="width:700x; height:500px;""></div>
    
@@ -50,8 +55,11 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Plotly  -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
+    <!--dygraph_code.js = the js file to create our chart-->
+    <!--<script type="text/javascript" src="dygraph_code.js"></script>-->
+    <script src="{{url_for('static', filename='dygraph_code.js')}}"></script>
+    
   </body>
 
 </html>

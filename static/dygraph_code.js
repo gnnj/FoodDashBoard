@@ -1,3 +1,30 @@
+
+// Create dropdown menu
+function dropDownEvent() {
+    Plotly.d3.json("/states", function (error, response) {
+
+        if (error) return console.warn(error);
+
+        // console.log(response);
+
+        var selector = document.getElementById("selDataset")
+
+        for (var i = 0; i < response.length; i++) {
+            var currentOption = document.createElement("option");
+            currentOption.innerHTML = response[i];
+            currentOption.value = response[i];
+            selector.appendChild(currentOption);
+        }
+    });
+};
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
 $(document).ready(function () {
     new Dygraph(
 
@@ -24,7 +51,10 @@ $(document).ready(function () {
     })
  });   
 
+var defaultState= "NY"
 
+init(defaultState);
+dropDownEvent();
 //Price - string/varchar
 //Rating - int
 
@@ -44,3 +74,5 @@ $$$$= above $61*/
 
 //https://developers.google.com/chart/interactive/docs/reference?csw=1#QueryResponse_getDataTable
 //https://developers.google.com/chart/interactive/docs/reference?csw=1#DataTable
+
+
