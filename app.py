@@ -10,6 +10,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine,inspect,func
+from sqlalchemy import desc,asc
 # Flask imports
 from flask import Flask, jsonify, render_template
 
@@ -79,7 +80,8 @@ def by_state_test(state):
 #/states route for dropdown selector
 @app.route("/states")
 def states():
-	results = session.query(Vegetarian.state).distinct().all()
+	results = session.query(Vegetarian.state).order_by(asc(Vegetarian.state)).distinct().all()
+
 	return(jsonify(list(results)))
 
 
