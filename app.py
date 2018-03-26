@@ -13,6 +13,8 @@ from sqlalchemy import create_engine,inspect,func
 # Flask imports
 from flask import Flask, jsonify, render_template
 
+import json
+
 
 # Flask set up
 app = Flask(__name__)
@@ -57,8 +59,10 @@ def dygraph():
 @app.route("/piechart1")
 def piechart1():
 	df = pd.read_csv('scripts/piechart_placeholderdata.csv')
-	print(df)
-	return render_template('piechart1.html')
+	data = df.to_dict(orient='records')
+	data= json.dumps(data, indent=2)
+	data = {'data': data}
+	return render_template('piechart1.html', data =data)
 
 
 # @app.route("/by_state/<state>")
