@@ -80,9 +80,9 @@ def by_state_test(state):
 @app.route("/states")
 def states():
 	results = session.query(Vegetarian.state).distinct().all()
-	state_data = results
-	return(jsonify(list(state_data)))
-	#return jsonify(state_data)
+	return(jsonify(list(results)))
+
+
 
    
 #Returns complete dataset as a JSON response
