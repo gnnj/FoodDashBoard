@@ -1,4 +1,7 @@
 
+//declare cleaned array of price/rating as var without assignment definition 
+var newArr;
+
 $(document).ready(function(){
 function stateList(){    
 d3.json("/states", function(error, data) {
@@ -32,10 +35,11 @@ function dropDownEvent() {
 
 var defaultState = "NY"
 
+
 function init(state){
     d3.json("/by_state/" + state, function(error, response){
         if (error) return console.warn(error);
-        var newArr = [];
+     
        /* for (var i = 0; i < response.length; i++) {
             console.log(response[i+1]); 
         }*/
@@ -44,7 +48,7 @@ function init(state){
         for (var i = 0; i < response.length; i++) {
             newArr = response.shift();
             newArr.shift();
-            newArr = newArr;
+           
 
             //change rating column to int type
             newArr[1]=parseInt(newArr[1]);
@@ -62,14 +66,21 @@ function init(state){
             if (newArr[0] == "$$$$"){
                 newArr[0] = 4
             }
-            console.log(newArr);
+            newArr = newArr;
+            //console.log(newArr);
         }  
+        newArr = newArr;
+        //console.log(newArr);
 
         });
 };
 
 //////////////////////////////////////////////////////////////////////////////////
 //Javascript for dygraph
+
+/*data_for_dygraph = new.map(newArr, function(n) {
+              return [ [ new Date(n[0]), n[1] ] ];
+          });*/
 
     new Dygraph(
 
@@ -95,8 +106,17 @@ function init(state){
                 showLabelsOnHighlight: true
     })
 
+/*data_for_dygraph = $.map(newArr, function(n) {
+              return [ [(n[0]), n[1] ] ];
+          });
+console.log(data_for_dygraph);*/
+
 dropDownEvent();
 init(defaultState);
+
+console.log(newArr); //this should have the entire response but in int form
+
+var data_for_dygraph;
 });
 
 
@@ -106,7 +126,7 @@ init(defaultState);
 /*$= under $10 (5-10)
 $$= $11-$30 [11]
 $$$= $31-$60 [31]
-$$$$= above $61*/ [61]
+$$$$= above $61*/ 
 
 //State? - string/varchar
 //Flask route that returns price translated to the above the approx range for signs
