@@ -45,16 +45,25 @@ function init(state){
             newArr = response.shift();
             newArr.shift();
             newArr = newArr;
-            //console.log(newArr);
+
+            //change rating column to int type
+            newArr[1]=parseInt(newArr[1]);
+
+            //change yelp $ symbols to approx changes or 1,2,3,4 seqeuence
+            if (newArr[0] == "$"){
+                newArr[0] = 1
+            }
+            if (newArr[0] == "$$"){
+                newArr[0] = 2
+            }
+            if (newArr[0] == "$$$"){
+                newArr[0] = 3
+            }
+            if (newArr[0] == "$$$$"){
+                newArr[0] = 4
+            }
+            console.log(newArr);
         }  
-
-        var priceModifiedArr = newArr
-
-        newArr.map(function(element,index){
-            return newArr.index;
-            
-        });
-    
 
         });
 };
