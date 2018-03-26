@@ -60,9 +60,12 @@ def dygraph():
 def piechart1():
 	df = pd.read_csv('scripts/piechart_placeholderdata.csv')
 	data = df.to_dict(orient='records')
+	print(data)
 	data= json.dumps(data, indent=2)
 	data = {'data': data}
+	#jsonify(data)
 	return render_template('piechart1.html', data =data)
+	#return jsonify(data)
 
 
 # @app.route("/by_state/<state>")

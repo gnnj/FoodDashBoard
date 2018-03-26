@@ -14,15 +14,22 @@
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+   
     <!--dygraph -->
-    <script type="text/javascript" src="../scripts_dependency/dygraph.js"></script>
+    <!--<script type="text/javascript" src="dygraph.js"></script>-->
+    <script src="{{url_for('static', filename='dygraph.js')}}"></script>
+
     <!--dygraph stylesheet -->
-	  <link rel="stylesheet" src="../scripts/dygraph.css" />
+	  <link rel="stylesheet" src="dygraph.css" /> 
+    <!--<script src="{{url_for('static', filename='dygraph.css')}}"></script>-->
+
     <!--d3 v4 -->
     <script src="https://d3js.org/d3.v4.min.js" crossorigin="anonymous"></script> 
 
     <!--dygraph_code.js = the js file to create our chart-->
-    <script type="text/javascript" src="../scripts/dygraph_code.js"></script>
+    <!--<script type="text/javascript" src="dygraph_code.js"></script>-->
+    <script src="{{url_for('static', filename='dygraph_code.js')}}"></script>
+    
 
   </head>
 

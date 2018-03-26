@@ -38,6 +38,7 @@ var label = d3.arc()
 
 var data = {{ data| safe }}
 d3.csv(data, function(d) {
+  console.log(data[0]);
   d.population = +d.population;
   return d;
 }, function(error, data) {
