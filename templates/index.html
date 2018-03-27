@@ -1,242 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <meta charset="UTF-8">
+  <title>Veggietopia</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+   integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+   crossorigin=""></script>
+</head>
+<style>
+div {
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!--js -->
-
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
-    <link href="styles2.css" rel="stylesheet">
-
-    <!-- visualize -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-
-  </head>
-
-    <title>VegeTopia!</title>
-  </head>
-  <body>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<!-- navbar-dark fixed-top-->
-<header>
-  <p></p>
- <div class="container">
-        <nav class="navbar navbar-expand-lg py-md-3 bg-dark">
-        <h1>Vegetopia</h1> 
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <!--<span class="navbar-toggler-icon"></span>-->
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="home.png" />
-              </a>
-              <!-- drop downs for charts -->
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="home.html">About</a>
-                  <a class="dropdown-item" href="data.html">Data Sources</a>
-                  <a class="dropdown-item" href="contacts.html">Contacts</a>
-                </div>
-              </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="charts.png" />
-              </a>
-              <!-- drop downs for charts -->
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#c1">Pie Chart</a>
-                  <a class="dropdown-item" href="#c2">Bubble Chart</a>
-                  <a class="dropdown-item" href="#c3">Dygraph</a>
-                </div>
-              </li>
-            
-          </ul>
-         
-        </div>
-      </nav>
-        <p> </p>
-        <p> </p>
-    <h3>This is all about Vegan/Vegetarian restaurants all over the United States.
-<p> </p>
-      When you’re planning a night out, it can be hard to find vegan or vegetarian restaurants that cater to your diet.But in some states/cities ,it’s easier than others.</h3>
-  
-  <h3>      We wanted to figure out which states are having most vegetarian restaurants. 
-  </h3>     
-<!--</div>-->
-      </header>
-
-    <main role="main">
-      <div class="container">
-      <div id="vegetopia" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#vegetopia" data-slide-to="0" class="active"></li>
-          <li data-target="#vegetopia" data-slide-to="1"></li>
-          <li data-target="#vegetopia" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="first-slide" src="https://files.slack.com/files-pri/T71BL7HJP-F9Y1PESJ3/image.png" alt="First slide">
-            <div class="container">
-              <div class="carousel-caption text-left">
-                <h2>Visit the Vegetarian food world</h2>
-                <p>Vegetarian restaurants around the US</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Like Us</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="second-slide" src="image2.jpg" alt="Second slide">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="third-slide" src="https://files.slack.com/files-pri/T71BL7HJP-F9WQUKGTV/image_uploaded_from_ios.png" alt="Third slide">
-            <div class="container">
-              <div class="carousel-caption text-right">
-                <h1>One more for good measure.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#vegetopia" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#vegetopia" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-       
+.jumbotron{
+  margin-top: 2px;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShw_TA1Db53WayQTbJVgElWONF6gdVAnP58ijdqDuluBYe8ypD);
+  background-size: cover;
+  color: white;
+}
+.col-md-4 {
+background-color: #c7c700;
+}
 
 
-      <!-- Charts displays
-      ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
+#mapid { height: 500px; }
+</style>
+<body>
 
-      <div class="container charting">
+<p>
+<ul class="nav nav-tabs nav-justified">
+  <li class="nav-item">
+    <a class="nav-link active" href="/">Veggietopia</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/by_state">State Bar Graph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/by_type">Type Bar Graph</a>
+  </li>
+  <li class="nav-item">
+    <!-- <a class="nav-link" href="/dygraph">DyGraph</a> -->
+    <!--Flask dygraph page link-->
+    <a href="{{ url_for('dygraph') }}">Dygraph Flask</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pie">Pie Chart</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pie_chart2">Pie Chart 2</a>
+  </li>
+  <!--Flask raw data link/route-->
+     <li><a href="{{ url_for('map_data') }}">Raw Data (JSON of Clean Dataset)</a></li>
+</ul>
+</p>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Veggietopia</h1>
+  <p class="lead">Explore the vegetarian restaurants in the United States</p>
+</div>
+<p>
+<div id="mapid"></div>
+</p>
+<script>
+var mymap = L.map('mapid').setView([36.741, -92.638], 3.5);
 
-        <!-- Three columns of text below the carousel - code changed to featureates below this code.-->
-        <!--
-        <div class="row">
-          <div class="col-lg-4">
-            <img id = "c1" class="rounded-circle" src="image1.jpg" alt="Generic placeholder image" width="240" height="240">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>/.col-lg-4 
-          <div class="col-lg-4">
-            <img id = "c2" class="rounded-circle" src="image2.jpg" alt="Generic placeholder image" width="200" height="200">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div> /.col-lg-4 
-          <div class="col-lg-4">
-            <img id = "c3" class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>/.col-lg-4
-        </div>/.row -->
+L.tileLayer('https://api.mapbox.com/styles/v1/gnnj/cjf81tx0n36772ro3ta7ma9zw/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZ25uaiIsImEiOiJjamVqNmkxbWIwazk5MzNudW4wemJzZTJoIn0.yz4oXpqHFx-jWUOVAvqoKw'
+}).addTo(mymap);
 
+</script>
 
-        <!-- START THE FEATURETTES -->
+</p>
+</p>
+<hr>
 
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">Pie Chart <span class="text-muted">Analysis</span></h2>
-            <p class="lead">This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
-          </div>
-          <div class="col-md-5">
-            <!--<img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
-            <img id = "c1" class="rounded-circle" src="https://files.slack.com/files-pri/T71BL7HJP-F9Y1PESJ3/image.png" alt="Generic placeholder image" width="240" height="240">
-            <h2>Heading</h2>
-            <p>This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Bubble Chart <span class="text-muted">Analysis</span></h2>
-            <p class="lead">This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img id = "c1" class="rounded-circle" src="image1.jpg" alt="Generic placeholder image" width="240" height="240">
-            <h2>Heading</h2>
-            <p>This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">Dygraph <span class="text-muted">Analysis.</span></h2>
-            <p class="lead">This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
-          </div>
-          <div class="col-md-5">
-            <img id = "c1" class="rounded-circle" src="https://files.slack.com/files-pri/T71BL7HJP-F9WQUKGTV/image_uploaded_from_ios.png" alt="Generic placeholder image" width="120" height="120">
-            <h2>Heading</h2>
-            <p>This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <!-- /END THE FEATURETTES -->
-
-      </div><!-- /.container -->
-
-
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-    </main>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../../../assets/js/vendor/holder.min.js"></script>
-  </body>
+<p><h2>Dashboard component design diagram:</h2></p>
+<p><img src="{{ url_for('static', filename = 'food-dash-design.jpg') }}" width="500" height="500" class="center"></p>
+</body>
 </html>
 
+<p>
+<p>
+<hr>
+
+<p> <h2>The Awesome Team ! </h2></p>
+<div class="col-md-4">
+           
+            <img id = "c1" class="rounded-circle" src="https://ca.slack-edge.com/T71BL7HJP-U7E6HFC0G-f936a0260b04-48" alt="Generic placeholder image" width="120" height="120">
+            <h2>Timothy Yu</h2>
+</div>
+<div class="col-md-4">
+            
+            <img id = "c1" class="rounded-circle" src="https://ca.slack-edge.com/T71BL7HJP-U7EF6TH1P-ec9455e2e97c-72" alt="Generic placeholder image" width="120" height="120">
+            <h2>Pallavi Donwad</h2>
+</div>
+<div class="col-md-4">
+            
+            <img id = "c1" class="rounded-circle" src="https://ca.slack-edge.com/T71BL7HJP-U7GAGKX1B-297a7da4963c-72" alt="Generic placeholder image" width="120" height="120">
+            <h2>Gibraan Negron</h2>
+</div>
+<div class="col-md-4">
+            
+            <img id = "c1" class="rounded-circle" src="https://ca.slack-edge.com/T71BL7HJP-U7SL420JX-1167bca8cdd8-48" alt="Generic placeholder image" width="120" height="120">
+    
+            <h2>Anu Khandelwal</h2>
+            
+</div>
+<div class="col-md-4">
+            
+            <img id = "c1" class="rounded-circle" src="https://ca.slack-edge.com/T71BL7HJP-U7RQB8JMV-955f2ba66d92-72" alt="Generic placeholder image" width="120" height="120">
+            <h2>Michael Ilelaboye</h2>
+</div>

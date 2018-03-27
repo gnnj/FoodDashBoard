@@ -1,6 +1,9 @@
 /* Giving the body the specified background color, adding font sizes for the h1 and h3 elements we'll be using */
 .jumbotron {
-  background-color: #FFA07A;
+  background-color: #DAF7A6 !important;
+   background: #DAF7A6 ;
+ 
+  background-image: url(food.jpg);
 }
 
 body {
@@ -11,10 +14,10 @@ body {
 h1 {
   color: transparent;
   text-align: center;
-  background-image: url(food.jpg);
+  background-image: url(templates/food.jpg);
   background-clip: text;
   -webkit-background-clip: text;
-  font-size: 65px;
+  font-size: 20px;
 }
 
 h3 {
@@ -23,7 +26,7 @@ h3 {
 
 .collapse {
   background: #DAF7A6;
-  
+
 }
 /* Giving our navbar some padding and a background color */
 .navbar {
