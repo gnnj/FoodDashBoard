@@ -131,6 +131,8 @@ function updateDygraph(newArr){
                 //create an array each loop grab value from array ---> then push to extermine
               ,
               { //Dygraph chart options
+                strokeWidth:0.0,
+                drawPoints: true,
                 labels: [ "Price Range", "Rating" ],
                 showRangeSelector: true,
                 rangeSelectorHeight: 30,
