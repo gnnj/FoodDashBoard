@@ -69,7 +69,7 @@ function init(state){
             //       we don't need to do anything else. The response now has the updated data.
 
             // create a new array with just the second and third elements of the response array
-            newArr.push([response[i][1],response[i][2]]);
+            newArr.push([response[i][2],response[i][1]]);
             //console.log(newArr);
         }  
         
@@ -81,6 +81,7 @@ function init(state){
         // NOTE: it has to be here (after the for loop, but before the close of d3.json)
         // --------------------------------------------------------------------------------
         updateDygraph(newArr);
+        updateDygraph2(newArr);
         //console.log(newArr);
     });
 };
@@ -130,26 +131,162 @@ function updateDygraph(newArr){
                 newArr
                 //create an array each loop grab value from array ---> then push to extermine
               ,
-              { //Dygraph chart options
-                strokeWidth:0.0,
-                drawPoints: true,
-                labels: [ "Price Range", "Rating" ],
+                { //Dygraph chart options
+                title: "Rating and Price Range Interactive Charts",
+                labels: [  "Rating","Price Range" ],
                 showRangeSelector: true,
                 rangeSelectorHeight: 30,
                 legend: 'always',
                 //rangeSelectorPlotStrokeColor: 'yellow',
                 //rangeSelectorPlotFillColor: 'lightyellow',
-                ylabel: "Rating",
-                xlabel: "Price range",
-                showLabelsOnHighlight: true
+                xlabel: "Rating",
+                ylabel: "Price range",
+                showLabelsOnHighlight: true,
+                connectSeparatedPoints: true,
+                rightGap:40,
+                highlightCircleSize: 15,
+                strokeWidth: 1,
+                strokeBorderWidth: 1,
+                logScale: true,
+                sigma: 2.0,
+                //errorBars:true,
+
     })
 
 };
 
+function updateDygraph2(newArr){
+      var g, regression, clearLines;  // defined below
+      document.getElementById("ry1").onclick = function() { regression(1); };
+      //document.getElementById("ry2").onclick = function() { regression(2); };
+      document.getElementById("clear").onclick = function() { clearLines(); };
+
+      var data = [];
+      for (var i = 0; i < 120; i++) {
+        data.push([i,
+                   i / 5.0 + 10.0 * Math.sin(i / 3.0),
+                   30.0 - i / 5.0 - 10.0 * Math.sin(i / 3.0 + 1.0)]);
+      }
+
+      // coefficients of regression for each series.
+      // if coeffs = [ null, [1, 2], null ] then we draw a regression for series 1
+      // only. The regression line is y = 1 + 2 * x.
+      var coeffs = [ null, null, null ];
+      regression = function(series) {
+        // Only run the regression over visible points.
+        var range = g.xAxisRange();
+
+        var sum_xy = 0.0, sum_x = 0.0, sum_y = 0.0, sum_x2 = 0.0, num = 0;
+        for (var i = 0; i < g.numRows(); i++) {
+          var x = g.getValue(i, 0);
+          if (x < range[0] || x > range[1]) continue;
+
+          var y = g.getValue(i, series);
+          if (y === null || y === undefined) continue;
+          if (y.length == 2) {
+            // using fractions
+            y = y[0] / y[1];
+          }
+
+          num++;
+          sum_x += x;
+          sum_y += y;
+          sum_xy += x * y;
+          sum_x2 += x * x;
+        }
+
+        var a = (sum_xy - sum_x * sum_y / num) / (sum_x2 - sum_x * sum_x / num);
+        var b = (sum_y - a * sum_x) / num;
+
+        coeffs[series] = [b, a];
+        if (typeof(console) != 'undefined') {
+          console.log("coeffs(" + series + "): [" + b + ", " + a + "]");
+        }
+
+        g.updateOptions({});  // forces a redraw.
+      };
+
+
+
+      clearLines = function() {
+        for (var i = 0; i < coeffs.length; i++) coeffs[i] = null;
+        g.updateOptions({});
+      };
+
+      function drawLines(ctx, area, layout) {
+        if (typeof(g) == 'undefined') return;  // won't be set on the initial draw.
+
+        var range = g.xAxisRange();
+        for (var i = 0; i < coeffs.length; i++) {
+          if (!coeffs[i]) continue;
+          var a = coeffs[i][1];
+          var b = coeffs[i][0];
+
+          var x1 = range[0];
+          var y1 = a * x1 + b;
+          var x2 = range[1];
+          var y2 = a * x2 + b;
+
+          var p1 = g.toDomCoords(x1, y1);
+          var p2 = g.toDomCoords(x2, y2);
+
+          var c = Dygraph.toRGB_(g.getColors()[i - 1]);
+          c.r = Math.floor(255 - 0.5 * (255 - c.r));
+          c.g = Math.floor(255 - 0.5 * (255 - c.g));
+          c.b = Math.floor(255 - 0.5 * (255 - c.b));
+          var color = 'rgb(' + c.r + ',' + c.g + ',' + c.b + ')';
+          ctx.save();
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1.0;
+          ctx.beginPath();
+          ctx.moveTo(p1[0], p1[1]);
+          ctx.lineTo(p2[0], p2[1]);
+          ctx.closePath();
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      g = new Dygraph(
+              document.getElementById("graphdiv2"),
+              newArr,
+              {
+                labels: ['Price range', 'Rating'],
+                underlayCallback: drawLines,
+                showRangeSelector: true,
+                drawPoints: true,
+                drawAxesAtZero: true,
+                strokeWidth: 0.0,
+                highlightCircleSize: 10,
+                connectSeparatedPoints: true,
+                rightGap:40,
+                showRangeSelector: true,
+                valueRange:[0,5],
+                xlabel: "Rating",
+                ylabel: "Price range",
+                logScale: false,
+                highlightSeriesOpts: {
+                      strokeWidth: 1,
+                      strokeBorderWidth: 0.5,
+                      highlightCircleSize: 4
+        }
+                //errorBars:true 
+            }
+          );
+         var onclick = function(ev) {
+            if (g.isSeriesLocked()) {
+              g.clearSelection();
+            } else {
+              g.setSelection(g.getSelection(), g.getHighlightSeries(), true);
+            }
+            }  
+            console.log(g);
+    };
+
 dropDownEvent();
 init(defaultState);
 
-var data_for_dygraph;
+
 });
 
 

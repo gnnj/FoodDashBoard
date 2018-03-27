@@ -115,3 +115,9 @@
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
 }
+
+.few .dygraph-legend > span.highlight { border: 1px solid grey; }
+
+.many .dygraph-legend > span { display: none; }
+
+.many .dygraph-legend > span.highlight { display: inline; }
