@@ -1,5 +1,8 @@
 //declare cleaned array of price/rating as var without assignment definition 
 var newArr = new Array();
+var flatArr = new Array();
+var test = [];
+
 $(document).ready(function(){
 function stateList(){    
 d3.json("/states", function(error, data) {
@@ -67,23 +70,49 @@ function init(state){
 
             // create a new array with just the second and third elements of the response array
             newArr.push([response[i][1],response[i][2]]);
-
+            //console.log(newArr);
         }  
+        
+        //flatArr = newArr.reshape(newArr.length,1);
         console.log(newArr);
+
         // --------------------------------------------------------------------------------
         // do something with `response` or `newArr` here
         // NOTE: it has to be here (after the for loop, but before the close of d3.json)
         // --------------------------------------------------------------------------------
         updateDygraph(newArr);
+        //console.log(newArr);
     });
 };
 
-/*function dygraph_format(response){
-    dygraphdata = map(response, function(n) {
-              return [ [ (n[0]), n[1] ] ];
-    
-});
-};*/
+
+
+
+function flatten(newArr) {
+    return newArr.reduce(function (flat, toFlatten) {
+    return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+  }, []);
+};
+
+Array.prototype.reshape =function(rows, cols) {
+  var copy = this.slice(0); // Copy all elements.
+  this.length = 0; // Clear out existing array.
+
+  for (var r = 0; r < rows; r++) {
+    var row = [];
+    for (var c = 0; c < cols; c++) {
+      var i = r * cols + c;
+      if (i < copy.length) {
+        row.push(copy[i]);
+      }
+    }
+    this.push(row);
+  }
+};
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////
 //Javascript for dygraph
 function updateDygraph(newArr){
@@ -102,14 +131,14 @@ function updateDygraph(newArr){
                 //create an array each loop grab value from array ---> then push to extermine
               ,
               { //Dygraph chart options
-                labels: [ "Price Range", "Rating" ],
+                //labels: [ "Price Range", "Rating" ],
                 showRangeSelector: true,
                 rangeSelectorHeight: 30,
                 legend: 'always',
                 //rangeSelectorPlotStrokeColor: 'yellow',
                 //rangeSelectorPlotFillColor: 'lightyellow',
-                ylabel: 'Rating',
-                xlabel: 'Price range',
+                ylabel: "Rating",
+                xlabel: "Price range",
                 showLabelsOnHighlight: true
     })
 
