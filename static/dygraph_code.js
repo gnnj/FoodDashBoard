@@ -1,5 +1,5 @@
 //declare cleaned array of price/rating as var without assignment definition 
-
+var newArr = new Array();
 $(document).ready(function(){
 function stateList(){    
 d3.json("/states", function(error, data) {
@@ -36,59 +36,69 @@ var defaultState = "NY"
 function init(state){
     d3.json("/by_state/" + state, function(error, response){
         if (error) return console.warn(error);
-     
-       /* for (var i = 0; i < response.length; i++) {
-            console.log(response[i+1]); 
-        }*/
-        //console.log(response[0]);
-        //console.log(response[0][0]);
+    
+        // loop through the response array
         for (var i = 0; i < response.length; i++) {
+
+            // create a new variable that stores the second item in each array
+            // this will equal, $, $$, $$$, or $$$$
             var value = response[i][1];
-
-            // if (value > );
-
-            //change yelp $ symbols to approx changes or 1,2,3,4 seqeuence
             response[i][2] = parseInt(response[i][2]);
+
+            // check to see if our new variable is $, $$, $$$, or $$$$
             if (value == "$"){
+                // if it's $ then replace the value in the array with the integer 1
                 response[i][1] = 1;
             } else if (value == "$$"){
+                // if it's $$ then replace the value in the array with the integer 2
                 response[i][1] = 2;
             } else if (value == "$$$"){
+                // if it's $$$ then replace the value in the array with the integer 3
                 response[i][1] = 3;
             } else if (value == "$$$$"){
+                // if it's $$$$ then replace the value in the array with the integer 4
                 response[i][1] = 4;
             } else {
+                // if anything else other than $, $$, $$$, or $$$$ then just put in a zero
                 response[i][1] = 0;
             }
+            // NOTE: because we just replaced the element that used to be the dollar sign with the integer
+            //       we don't need to do anything else. The response now has the updated data.
+
+            // create a new array with just the second and third elements of the response array
+            newArr.push([response[i][1],response[i][2]]);
+
         }  
-        console.log(response)
-        // =========
-        // you can call a function here and send it the updated response array.
-        // NOTE: you must do it here before the next close curly and parenthesis.
-        // =========
-        //dygraph_format(response);
+        console.log(newArr);
+        // --------------------------------------------------------------------------------
+        // do something with `response` or `newArr` here
+        // NOTE: it has to be here (after the for loop, but before the close of d3.json)
+        // --------------------------------------------------------------------------------
+        //updateDygraph(newArr);
     });
 };
 
-function dygraph_format(response){
-    data_for_dygraph = map(response, function(n) {
-              return [ [ new Date(n[0]), n[1] ] ];
+/*function dygraph_format(response){
+    dygraphdata = map(response, function(n) {
+              return [ [ (n[0]), n[1] ] ];
     
 });
-};
+};*/
 //////////////////////////////////////////////////////////////////////////////////
 //Javascript for dygraph
-
+function updateDygraph(newArr){
     new Dygraph(
 
     // containing div
     document.getElementById("graphdiv"),
 
             [//Dygraph chart data in array format
-                [1,10], //first y column down is X axis
+                //[dygraphdata]
+                /*[1,10],
                 [2,20],
-                [3,50],
-                [4,70]
+                [3,30],
+                [4,40]*/
+                newArr
                 //create an array each loop grab value from array ---> then push to extermine
               ],
               { //Dygraph chart options
@@ -103,7 +113,7 @@ function dygraph_format(response){
                 showLabelsOnHighlight: true
     })
 
-
+};
 
 dropDownEvent();
 init(defaultState);
