@@ -91,16 +91,12 @@ def pie_chart():
 	count_index = all_restaurants_df['state'].value_counts().index.tolist()
 	labels = count_index
 	values = count
-	colors = ["#31a354", "#e34a33", "#8856a7", "#a6bddb", "#fdbb84", "#c51b8a", 
-	"#FFCC33", "#FFCC00", "#ffeda0", "#CC9933", "#CC9966", "#CC9999", "#fee0d2", 
-	"#CC99FF", "#FF99FF", "#FF99CC", "#FF9999", "#FF9966", "#FF9933", "#FF9900", 
-	"#CC6600", "#CC6633", "#CC6666", "#CC6699", "#CC66CC", "#CC66FF", "#FF66FF", 
-	"#FF66CC", "#FF6699", "#FF6666", "#FF6633", "#FF6600", "#CC3300", "#CC3333", 
-	"#CC3366", "#CC3399", "#CC33CC", "#CC33FF", "#f7fcf0", "#FF33CC", "#FF3399",
-	"#FF3366", "#FF3333", "#FF3300", "#e0f3db", "#ef3b2c", "#ef3b2c", "#CC0099",
-	"#CC00CC", "#CC00FF"]
-	# return render_template('pie_chart.html', set=zip(values, labels, colors))
-	return render_template('state.html', set=zip(values, labels, colors))
+	colors = ["#31a354", "#e34a33", "#8856a7", "#a6bddb", "#fdbb84", "#c51b8a", "#FFCC33", "#FFCC00", "#ffeda0", "#CC9933", "#CC9966", "#CC9999", "#fee0d2", "#CC99FF", "#FF99FF", "#FF99CC", "#FF9999", "#FF9966", "#FF9933", "#FF9900", 
+				"#CC6600", "#CC6633", "#CC6666", "#CC6699", "#CC66CC", "#CC66FF", "#FF66FF", "#FF66CC", "#FF6699", "#FF6666", "#FF6633", "#FF6600", "#CC3300", "#CC3333", "#CC3366", "#CC3399", "#CC33CC", "#CC33FF", "#f7fcf0", "#FF33CC", "#FF3399",
+				"#FF3366", "#FF3333", "#FF3300", "#e0f3db", "#ef3b2c", "#ef3b2c", "#CC0099","#CC00CC", "#CC00FF"]
+	return render_template('pie_chart.html', set=zip(values, labels, colors))
+	#return render_template('state.html', set=zip(values, labels, colors))
+    #return render_template('pie_chart2.html', set=zip(values, labels, colors))
  
 if __name__ == '__main__':
     app.run(debug=True)

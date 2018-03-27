@@ -1,7 +1,21 @@
-<!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <title>Chart.js </title>      <!-- import plugin script -->   <script src='static/Chart.min.js'></script>   </head><body>
-<h1>Total Vegetarian Restaurants by State</h1><!-- bar chart canvas element \<p><canvas id="chart" width="1400" height="500"></canvas></p>-->
+<!DOCTYPE html>
+<html lang="en us ">
+<head>   
+  <meta charset="utf-8" />   
+  <title>Chart.js </title>  
+
+  <!-- import plugin script -->   
+
+  <script src='static/Chart.min.js'>
+  </script>   
+</head>
+
+<body>
+
+  <h1>Total Vegetarian Restaurants by State</h1> <!-- bar chart canvas element \<p><canvas id="chart" width="1400" height="500"></canvas></p>-->
 
 <canvas id="myChart" width="10" height="10"></canvas>
+
 <script>
 
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -25,14 +39,14 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
+                'rgba(256,99,132,1)',
+                'rgba(54, 165, 235, 1)',
                 'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
+                'rgba(75, 190, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 160, 64,2)'
             ],
-            borderWidth: 1
+            borderWidth: 3
         }]
     },
     options: {
@@ -62,22 +76,22 @@ var myChart = new Chart(ctx, {
    //    ]
    // }
  
-   // // get bar chart canvas
-   // var mychart = document.getElementById("chart").getContext("2d");
+   // get bar chart canvas
+   var mychart = document.getElementById("chart").getContext("2d");
  
-   // steps = 10
-   // max = 1700
-   // // draw bar chart
-   // new Chart(mychart).Bar(barData, {
-   //      scaleOverride: true,
-   //      scaleSteps: steps,
-   //      scaleStepWidth: Math.ceil(max / steps),
-   //      scaleStartValue: 0,
-   //      scaleShowVerticalLines: true,
-   //      scaleShowGridLines : true,
-   //      barShowStroke : true,
-   //      scaleShowLabels: true
-   // });
+  /* steps = 10
+   max = 1700
+   // draw bar chart
+   new Chart(mychart).Bar(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+   });*/
  
 </script>
 </body>
