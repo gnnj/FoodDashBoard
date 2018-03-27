@@ -6,22 +6,23 @@
 
   <!-- import plugin script -->   
 
-  <script src='static/Chart.min.js'>
-  </script>   
+  <script src='static/Chart.min.js'></script>   
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 <body>
 
-  <h1>Total Vegetarian Restaurants by State</h1> <!-- bar chart canvas element \<p><canvas id="chart" width="1400" height="500"></canvas></p>-->
+  <h1>Total Only Vegetarian Restaurants by State</h1> <!-- bar chart canvas element \<p><canvas id="chart" width="1400" height="500"></canvas></p>-->
 
 <canvas id="myChart" width="10" height="10"></canvas>
 
 <script>
 
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
+var chart = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(chart, {
     type: "pie",
     showInLegend : true,
+    explodeOnClick : true,
     data: {
         labels: [{% for item in labels %}
                   "{{item}}",
