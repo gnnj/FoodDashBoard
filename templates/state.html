@@ -1,5 +1,28 @@
 <!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <title>Chart.js </title>      <!-- import plugin script -->   <script src='static/Chart.min.js'></script>   </head><body>
-<h1>Total Vegetarian Restaurants by State</h1><!-- bar chart canvas element \<p><canvas id="chart" width="1400" height="500"></canvas></p>-->
+
+<p>
+<ul class="nav nav-tabs nav-justified">
+  <li class="nav-item">
+    <a class="nav-link active" href="/">Veggietopia</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/by_state">State Bar Graph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/by_type">Type Bar Graph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/dygraph">DyGraph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pie">Pie Chart</a>
+  </li>
+</ul>
+</p>
+
+<div class="jumbotron">
+  <h1 class="display-6">Total Vegetarian Restaurants by State</h1>
+</div>
 
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
@@ -16,22 +39,12 @@ var myChart = new Chart(ctx, {
             data: [{% for item in values %}
                       {{item}},
                     {% endfor %}],
-            // backgroundColor: [
-            //     'rgba(255, 99, 132, 0.2)',
-            //     'rgba(54, 162, 235, 0.2)',
-            //     'rgba(255, 206, 86, 0.2)',
-            //     'rgba(75, 192, 192, 0.2)',
-            //     'rgba(153, 102, 255, 0.2)',
-            //     'rgba(255, 159, 64, 0.2)'
-            // ],
-            // borderColor: [
-            //     'rgba(255,99,132,1)',
-            //     'rgba(54, 162, 235, 1)',
-            //     'rgba(255, 206, 86, 1)',
-            //     'rgba(75, 192, 192, 1)',
-            //     'rgba(153, 102, 255, 1)',
-            //     'rgba(255, 159, 64, 1)'
-            // ],
+            backgroundColor: [
+                "#CCCCCC", "#CCCCFF", "#FFCCFF", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#CC9900", "#CC9933", "#CC9966", "#CC9999", "#CC99CC", "#CC99FF", "#FF99FF", "#FF99CC", "#FF9999", "#FF9966", "#FF9933", "#FF9900", "#CC6600", "#CC6633", "#CC6666", "#CC6699", "#CC66CC", "#CC66FF", "#FF66FF", "#FF66CC", "#FF6699", "#FF6666", "#FF6633", "#FF6600", "#CC3300", "#CC3333", "#CC3366", "#CC3399", "#CC33CC", "#CC33FF", "#FF33FF", "#FF33CC", "#FF3399", "#FF3366", "#FF3333", "#FF3300", "#CC0000", "#CC0033", "#CC0066", "#CC0099", "#CC00CC", "#CC00FF"
+            ],
+            borderColor: [
+                "#CCCCCC", "#CCCCFF", "#FFCCFF", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#CC9900", "#CC9933", "#CC9966", "#CC9999", "#CC99CC", "#CC99FF", "#FF99FF", "#FF99CC", "#FF9999", "#FF9966", "#FF9933", "#FF9900", "#CC6600", "#CC6633", "#CC6666", "#CC6699", "#CC66CC", "#CC66FF", "#FF66FF", "#FF66CC", "#FF6699", "#FF6666", "#FF6633", "#FF6600", "#CC3300", "#CC3333", "#CC3366", "#CC3399", "#CC33CC", "#CC33FF", "#FF33FF", "#FF33CC", "#FF3399", "#FF3366", "#FF3333", "#FF3300", "#CC0000", "#CC0033", "#CC0066", "#CC0099", "#CC00CC", "#CC00FF"
+            ],
             borderWidth: 1
         }]
     },
@@ -45,39 +58,6 @@ var myChart = new Chart(ctx, {
         }
     }
 });  
-   // bar chart data
-   // var barData = {
-   // labels : [{% for item in labels %}
-   //                "{{item}}",
-   //            {% endfor %}],
-   // datasets : [
-   //    {
-   //          fillColor: "rgba(151,187,205,0.2)",
-   //          strokeColor: "rgba(151,187,205,1)",
-   //          pointColor: "rgba(151,187,205,1)",
-   //       data : [{% for item in values %}
-   //                    {{item}},
-   //                  {% endfor %}]
-   //    }
-   //    ]
-   // }
- 
-   // // get bar chart canvas
-   // var mychart = document.getElementById("chart").getContext("2d");
- 
-   // steps = 10
-   // max = 1700
-   // // draw bar chart
-   // new Chart(mychart).Bar(barData, {
-   //      scaleOverride: true,
-   //      scaleSteps: steps,
-   //      scaleStepWidth: Math.ceil(max / steps),
-   //      scaleStartValue: 0,
-   //      scaleShowVerticalLines: true,
-   //      scaleShowGridLines : true,
-   //      barShowStroke : true,
-   //      scaleShowLabels: true
-   // });
- 
+
 </script>
 </body></html>
