@@ -46,7 +46,7 @@ function init(state){
             // create a new variable that stores the second item in each array
             // this will equal, $, $$, $$$, or $$$$
             var value = response[i][1];
-            response[i][2] = parseInt(response[i][2]);
+            response[i][2] = parseFloat(response[i][2]);
 
             // check to see if our new variable is $, $$, $$$, or $$$$
             if (value == "$"){
@@ -131,7 +131,7 @@ function updateDygraph(newArr){
                 //create an array each loop grab value from array ---> then push to extermine
               ,
               { //Dygraph chart options
-                //labels: [ "Price Range", "Rating" ],
+                labels: [ "Price Range", "Rating" ],
                 showRangeSelector: true,
                 rangeSelectorHeight: 30,
                 legend: 'always',
