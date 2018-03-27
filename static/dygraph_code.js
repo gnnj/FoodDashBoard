@@ -1,6 +1,4 @@
-
 //declare cleaned array of price/rating as var without assignment definition 
-var newArr;
 
 $(document).ready(function(){
 function stateList(){    
@@ -35,7 +33,6 @@ function dropDownEvent() {
 
 var defaultState = "NY"
 
-
 function init(state){
     d3.json("/by_state/" + state, function(error, response){
         if (error) return console.warn(error);
@@ -43,44 +40,44 @@ function init(state){
        /* for (var i = 0; i < response.length; i++) {
             console.log(response[i+1]); 
         }*/
-
+        //console.log(response[0]);
         //console.log(response[0][0]);
         for (var i = 0; i < response.length; i++) {
-            newArr = response.shift();
-            newArr.shift();
-           
+            var value = response[i][1];
 
-            //change rating column to int type
-            newArr[1]=parseInt(newArr[1]);
+            // if (value > );
 
             //change yelp $ symbols to approx changes or 1,2,3,4 seqeuence
-            if (newArr[0] == "$"){
-                newArr[0] = 1
+            response[i][2] = parseInt(response[i][2]);
+            if (value == "$"){
+                response[i][1] = 1;
+            } else if (value == "$$"){
+                response[i][1] = 2;
+            } else if (value == "$$$"){
+                response[i][1] = 3;
+            } else if (value == "$$$$"){
+                response[i][1] = 4;
+            } else {
+                response[i][1] = 0;
             }
-            if (newArr[0] == "$$"){
-                newArr[0] = 2
-            }
-            if (newArr[0] == "$$$"){
-                newArr[0] = 3
-            }
-            if (newArr[0] == "$$$$"){
-                newArr[0] = 4
-            }
-            newArr = newArr;
-            //console.log(newArr);
         }  
-        newArr = newArr;
-        //console.log(newArr);
-
-        });
+        console.log(response)
+        // =========
+        // you can call a function here and send it the updated response array.
+        // NOTE: you must do it here before the next close curly and parenthesis.
+        // =========
+        //dygraph_format(response);
+    });
 };
 
+function dygraph_format(response){
+    data_for_dygraph = map(response, function(n) {
+              return [ [ new Date(n[0]), n[1] ] ];
+    
+});
+};
 //////////////////////////////////////////////////////////////////////////////////
 //Javascript for dygraph
-
-/*data_for_dygraph = new.map(newArr, function(n) {
-              return [ [ new Date(n[0]), n[1] ] ];
-          });*/
 
     new Dygraph(
 
@@ -106,15 +103,10 @@ function init(state){
                 showLabelsOnHighlight: true
     })
 
-/*data_for_dygraph = $.map(newArr, function(n) {
-              return [ [(n[0]), n[1] ] ];
-          });
-console.log(data_for_dygraph);*/
+
 
 dropDownEvent();
 init(defaultState);
-
-console.log(newArr); //this should have the entire response but in int form
 
 var data_for_dygraph;
 });
