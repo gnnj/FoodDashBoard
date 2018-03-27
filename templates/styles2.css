@@ -14,11 +14,11 @@ h1 {
   background-image: url(food.jpg);
   background-clip: text;
   -webkit-background-clip: text;
-  font-size: 280px;
+  font-size: 40px;
 }
 
 h3 {
-  font-size: 130px;
+  font-size: 80px;
 }
 
 .collapse {
@@ -28,14 +28,15 @@ h3 {
 .navbar {
   padding: 100px;
   background: #DAF7A6 !important;
-  opacity : 0.9;
+  border-radius: 25px;
+  opacity : 0.99;
 }
 .navbar-brand {
   font-size: 20px;
 }
 
 .navbar2 {
-  padding: 100px;
+  padding: 10px;
   background: #DAF7A6;
 }
 
@@ -46,7 +47,7 @@ h3 {
   margin-right: 10px;
   margin-left: 100px;
   cursor: pointer;
-  background: #fff;
+  
   border-radius: 3px;
 }
 
@@ -62,7 +63,6 @@ h3 {
   margin-right: 10px;
   margin-left: 100px;
   cursor: pointer;
-  background: #fff;
   border-radius: 3px;
 }
 
