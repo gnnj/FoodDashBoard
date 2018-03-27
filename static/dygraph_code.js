@@ -74,7 +74,7 @@ function init(state){
         // do something with `response` or `newArr` here
         // NOTE: it has to be here (after the for loop, but before the close of d3.json)
         // --------------------------------------------------------------------------------
-        //updateDygraph(newArr);
+        updateDygraph(newArr);
     });
 };
 
@@ -92,7 +92,7 @@ function updateDygraph(newArr){
     // containing div
     document.getElementById("graphdiv"),
 
-            [//Dygraph chart data in array format
+            //Dygraph chart data in array format
                 //[dygraphdata]
                 /*[1,10],
                 [2,20],
@@ -100,7 +100,7 @@ function updateDygraph(newArr){
                 [4,40]*/
                 newArr
                 //create an array each loop grab value from array ---> then push to extermine
-              ],
+              ,
               { //Dygraph chart options
                 labels: [ "Price Range", "Rating" ],
                 showRangeSelector: true,
