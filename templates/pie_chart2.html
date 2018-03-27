@@ -1,34 +1,149 @@
-<!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <title>Chart.js </title>      <!-- import plugin script -->   <script src='static/Chart.min.js'></script>   </head><body>
-<h1>Flask Chart.js</h1><!-- bar chart canvas element --><canvas id="chart" width="600" height="400"></canvas>
+<!DOCTYPE html>
+<html lang="en us ">
+<head>   
+  <meta charset="utf-8" />   
+  <title>Chart.js </title>  
+
+  <!-- import plugin script -->   
+
+  <script src='static/Chart.min.js'></script>   
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+
+  <h1>Total Only Vegetarian Restaurants by State</h1> <!-- bar chart canvas element \<p><canvas id="chart" width="1400" height="500"></canvas></p>-->
+
+<canvas id="myChart" width="10" height="10"></canvas>
+
 <script>
-   var pieData = [
-            {% for item,label,colors in set %}
-                {
-                    value: {{item}},
-                    label: "{{label}}",
-                    color : "{{colors}}"
-                },
-                {% endfor %}
- 
- 
-         ];
+
+var chart = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(chart, {
+    type: "pie",
+    showInLegend : true,
+    explodeOnClick : true,
+    data: {
+        labels: [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+        datasets: [{
+            label: '# of Restaurants',
+            data: [{% for item in values %}
+                      {{item}},
+                    {% endfor %}],
+            backgroundColor: [
+                /*'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'*/
+                'rgb(100, 10, 100)', //ca hsl(0, 100%, 50%)',
+                'rgba(255, 64, 50)', //ny
+                'rgba(200, 12, 0)', //TX
+                'rgba(255, 192, 203)', //FL rgb(255, 192, 203)
+                'rgba(150, 205, 7)',//PA
+                'rgba(130, 130, 10)', //WA255, 192, 203
+                'rgba(120, 210, 0)',
+                'rgba(225, 220, 10)',
+                'rgba(265, 255, 0)',
+                'rgba(166, 280, 64)',
+                'rgba(0, 221, 128)',
+                'rgba(0, 101, 2)',
+                'rgba(0, 255, 8)',
+                'rgba(0, 151, 9)',
+                'rgba(150, 128, 255)',
+                'rgba(0, 64, 255)',
+                'rgba(0, 0, 255)',
+                'rgba(64, 0, 255)',
+                'rgba(128, 0, 255)',
+                'rgba(191, 0, 255)',
+                'rgba(15, 0, 255)',
+                'rgba(200, 0, 191)',
+                'rgba(250, 0, 128)',
+                'rgba(255, 0, 64)',
+                'rgba(280, 0, 0)',
+                'rgba(60, 255, 0)',
+                'rgba(50, 255, 0)',
+                'rgba(20, 255, 64)',
+                'rgba(0, 255, 128)',
+                'rgba(230, 230, 191)',
+                'rgba(191, 191, 255)',
+                'rgba(0, 128, 255)',
+                'rgba(10, 64, 255)',
+                'rgba(64, 0, 255)',
+                'rgba(128, 0, 255)',
+                'rgba(191, 0, 255)',
+                'rgba(205, 0, 205)',
+                'rgba(150, 255, 0)',
+                'rgba(191, 255, 0)',
+                'rgba(128, 255, 0)',
+                'rgba(64, 255, 0)',
+                'rgba(8, 255, 0)',
+                'rgba(10, 205, 64)',
+                'rgba(5, 255, 128)',
+                'rgba(40, 255, 191)',
+                'rgba(20, 191, 255)',
+                'rgba(80, 128, 255)',
+                'rgba(10, 64, 255)'
+
+            ],
+            borderColor: [
+                'rgba(256,99,132,1)',
+                'rgba(54, 165, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 190, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 160, 64,2)'
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});  
+   // bar chart data
+   // var barData = {
+   // labels : [{% for item in labels %}
+   //                "{{item}}",
+   //            {% endfor %}],
+   // datasets : [
+   //    {
+   //          fillColor: "rgba(151,187,205,0.2)",
+   //          strokeColor: "rgba(151,187,205,1)",
+   //          pointColor: "rgba(151,187,205,1)",
+   //          data : [{% for item in values %}
+   //                    {{item}},
+   //                  {% endfor %}]
+   //    }
+   //    ]
+   // }
  
    // get bar chart canvas
-   var mychart = document.getElementById("chart").getContext("2d");
+   //var mychart = document.getElementById("chart").getContext("2d");
  
-   steps = 10
-   max = 50
-   // draw pie chart
-   new Chart(document.getElementById("chart").getContext("2d")).Pie({
-    options: {
-        legend: {
-            display: true,
-            labels: {
-                fontColor: 'rgb(255, 99, 132)'
-            }
-            }
-        }
-  }, pieData);
+  /* steps = 10
+   max = 1700
+   // draw bar chart
+   new Chart(mychart).Bar(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+   });*/
  
 </script>
-</body></html>
+</body>
+</html>

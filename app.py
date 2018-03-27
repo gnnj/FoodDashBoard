@@ -123,6 +123,21 @@ def pie_chart():
 	labels = count_index
 	values = count
 	return render_template('pie_chart.html', values=values, labels=labels)
+@app.route("/pie_chart2")
+def pie_chart2():
+	results = session.query(Vegetarian).all()
+	state = []
+	for restaurant in results:
+	    state_dict = {}
+	    #state_dict["restaurant_name"] = restaurant.restaurant_name
+	    state_dict["state"] = restaurant.state
+	    state.append(state_dict)
+	all_restaurants_df = pd.DataFrame(state)
+	count = all_restaurants_df['state'].value_counts().tolist()
+	count_index = all_restaurants_df['state'].value_counts().index.tolist()
+	labels = count_index
+	values = count
+	return render_template('pie_chart2.html', values=values, labels=labels)
 
 #Returns complete dataset as a JSON response
 @app.route("/map_data")
