@@ -34,11 +34,15 @@ div {
     <a class="nav-link" href="/by_type">Type Bar Graph</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/dygraph">DyGraph</a>
+    <!-- <a class="nav-link" href="/dygraph">DyGraph</a> -->
+    <!--Flask dygraph page link-->
+    <a href="{{ url_for('dygraph') }}">Dygraph Flask</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/pie">Pie Chart</a>
   </li>
+  <!--Flask raw data link/route-->
+     <li><a href="{{ url_for('map_data') }}">Raw Data (JSON of Clean Dataset)</a></li>
 </ul>
 </p>
 <div class="jumbotron">

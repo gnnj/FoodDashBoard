@@ -48,6 +48,26 @@ class Vegetarian(Base):
 def index():
     return render_template('index.html')
 
+#dygraph route
+@app.route("/dygraph")
+def dygraph():
+	    return render_template('dygraph.html')
+
+#dygraph states route for dropdown selector
+@app.route("/states_d")
+def states():
+	results = session.query(Vegetarian.state).order_by(asc(Vegetarian.state)).distinct().all()
+	return(jsonify(list(results)))
+
+#by_state_test() route working:
+#returns price and rating for selected state
+@app.route("/by_state_d/<state>")
+def by_state_test(state):
+
+	state = state.strip()
+	results = session.query(Vegetarian.state,Vegetarian.price,Vegetarian.rating).filter(Vegetarian.state == state).all()	
+	return(jsonify(results))
+
 @app.route("/by_state")
 def state_chart():
 	results = session.query(Vegetarian).all()
@@ -63,6 +83,13 @@ def state_chart():
 	labels = count_index
 	values = count
 	return render_template('state.html', values=values, labels=labels)
+
+@app.route("/by_state")
+def by_state():
+	results = session.query(Vegetarian.state, func.count(Vegetarian.state)).group_by(Vegetarian.state).all()
+	state_data = results
+	return jsonify(state_data)
+
 
 @app.route("/by_type")
 def type_chart():
@@ -96,6 +123,27 @@ def pie_chart():
 	labels = count_index
 	values = count
 	return render_template('pie_chart.html', values=values, labels=labels)
- 
+
+#Returns complete dataset as a JSON response
+@app.route("/map_data")
+def map_data():
+	results = session.query(Vegetarian).all()
+	all_restaurants = []
+	for restaurant in results:
+		all_restaurants_dict = {}
+		all_restaurants_dict["restaurant_name"] = restaurant.restaurant_name
+		all_restaurants_dict["address"] = restaurant.address
+		all_restaurants_dict["city"] = restaurant.city
+		all_restaurants_dict["state"] = restaurant.state
+		all_restaurants_dict["zip_code"] = restaurant.zip_code
+		all_restaurants_dict["phone"] = restaurant.phone
+		all_restaurants_dict["cuisine_type"] = restaurant.cuisine_type
+		all_restaurants_dict["rating"] = restaurant.rating
+		all_restaurants_dict["price"] = restaurant.price
+		all_restaurants_dict["latitude"] = restaurant.latitude
+		all_restaurants_dict["longitude"] = restaurant.longitude
+		all_restaurants.append(all_restaurants_dict)
+	return jsonify(all_restaurants)
+
 if __name__ == '__main__':
     app.run(debug=True)

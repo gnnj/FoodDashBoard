@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Placeholder title</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!--local stylesheet -->
+    <!---<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+    
+    <!--local stylesheet with flask specific routing specified -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheet.css') }}">
+
+    <!--d3 -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  </head>
+
+  <body>
+   
+    <!--Flask piechart1 -->
+    <p><a href="{{ url_for('piechart1') }}">Piechart1 Flask</a></p>
+   
+    <!--Flask dygraph page link-->
+    <p><a href="{{ url_for('dygraph') }}">Dygraph Flask</a></p>
+    
+    <!--temporary bubblechart page link-->
+    <!--<p><a href="bubblechart.html">Bubblechart</a></p>-->
+
+    <!--Flask raw data link/route-->
+     <p><a href="{{ url_for('map_data') }}">Raw Data (JSON of Clean Dataset)</a></p>
+
+    <!--dropdown selector-->
+    <div class="panel panel-default" style="overflow:auto; overflow-wrap:break-word">
+      <div class="panel-body" style="background-color: #eee">
+        <div class="form-group">
+          <label for="selDataset">Choose a State:</label>
+            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+      </div>
+    </div>    
+    
+
+    <!-- Bootstrap JS requirements: -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- js/d3 main for index.html,Flask load -->
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+  </body>
+
+</html>
+
+
