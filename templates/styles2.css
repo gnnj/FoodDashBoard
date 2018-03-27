@@ -14,25 +14,27 @@ h1 {
   background-image: url(food.jpg);
   background-clip: text;
   -webkit-background-clip: text;
-  font-size: 40px;
+  font-size: 65px;
 }
 
 h3 {
-  font-size: 80px;
+  font-size: 30px;
 }
 
 .collapse {
   background: #DAF7A6;
+  
 }
 /* Giving our navbar some padding and a background color */
 .navbar {
+
   padding: 100px;
   background: #DAF7A6 !important;
   border-radius: 25px;
   opacity : 0.99;
 }
 .navbar-brand {
-  font-size: 20px;
+  font-size: 60px;
 }
 
 .navbar2 {
@@ -64,6 +66,25 @@ h3 {
   margin-left: 100px;
   cursor: pointer;
   border-radius: 3px;
+}
+.navbar ul li:hover{
+background-color: #c7c700;
+}
+
+.dropdown-item:hover {
+    
+    background-color: #aa001e;
+    }
+
+
+/* Show the dropdown menu on hover */
+.dropdown-menu:hover .dropdown-item {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown-menu:hover .dropdownMenuButton {
+    background-color: #3e8e41;
 }
 
 /* Styling the header, giving it a height, a background color, and some top padding */

@@ -34,21 +34,28 @@
 
 <!-- navbar-dark fixed-top-->
 <header>
- <!-- <div class="container">-->
-  <div class="jumbotron">
-      <nav class="navbar navbar-expand-lg py-sm-3 bg-dark">
+  <p></p>
+ <div class="container">
+        <nav class="navbar navbar-expand-lg py-md-3 bg-dark">
         <h1>Vegetopia</h1> 
-        <a class="navbar-brand" href="#">HH</a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <!--<span class="navbar-toggler-icon"></span>-->
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
-              
-              <a class="nav-link" href="home.html"><img src="home.png" /></a>
-            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="home.png" />
+              </a>
+              <!-- drop downs for charts -->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="home.html">About</a>
+                  <a class="dropdown-item" href="data.html">Data Sources</a>
+                  <a class="dropdown-item" href="contacts.html">Contacts</a>
+                </div>
+              </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="charts.png" />
@@ -65,16 +72,19 @@
          
         </div>
       </nav>
-    <h1>Vegetopia</h1>      
-    <h3>Most popular Vegan / Vegetraian options for a Restaurant finding website.</h3>
-  </div>
-  <p> Find restaurants that offer Vegan dishes</p>      
-  <p>Find restaurants that offer vegetarian dishes</p>      
+        <p> </p>
+        <p> </p>
+    <h3>This is all about Vegan/Vegetarian restaurants all over the United States.
+<p> </p>
+      When you’re planning a night out, it can be hard to find vegan or vegetarian restaurants that cater to your diet.But in some states/cities ,it’s easier than others.</h3>
+  
+  <h3>      We wanted to figure out which states are having most vegetarian restaurants. 
+  </h3>     
 <!--</div>-->
       </header>
 
     <main role="main">
-
+      <div class="container">
       <div id="vegetopia" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#vegetopia" data-slide-to="0" class="active"></li>
@@ -122,40 +132,38 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <div id="svg-area"></div>
-      <script type="text/javascript" src="app.js"></script>
-     <div id="svg-area1"></div>
-      <script type="text/javascript" src="app1.js"></script>
-    
+    </div>
+       
 
 
-      <!-- Marketing messaging and featurettes
+      <!-- Charts displays
       ================================================== -->
       <!-- Wrap the rest of the page in another container to center all the content. -->
 
-      <div class="container marketing">
+      <div class="container charting">
 
-        <!-- Three columns of text below the carousel -->
+        <!-- Three columns of text below the carousel - code changed to featureates below this code.-->
+        <!--
         <div class="row">
           <div class="col-lg-4">
             <img id = "c1" class="rounded-circle" src="image1.jpg" alt="Generic placeholder image" width="240" height="240">
             <h2>Heading</h2>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
+          </div>/.col-lg-4 
           <div class="col-lg-4">
             <img id = "c2" class="rounded-circle" src="image2.jpg" alt="Generic placeholder image" width="200" height="200">
             <h2>Heading</h2>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
+          </div> /.col-lg-4 
           <div class="col-lg-4">
             <img id = "c3" class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
             <h2>Heading</h2>
             <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+          </div>/.col-lg-4
+        </div>/.row -->
 
 
         <!-- START THE FEATURETTES -->
@@ -164,11 +172,15 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Pie Chart <span class="text-muted">Analysis</span></h2>
+            <p class="lead">This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <!--<img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
+            <img id = "c1" class="rounded-circle" src="image1.jpg" alt="Generic placeholder image" width="240" height="240">
+            <h2>Heading</h2>
+            <p>This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
         </div>
 
@@ -176,11 +188,14 @@
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Bubble Chart <span class="text-muted">Analysis</span></h2>
+            <p class="lead">This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
           </div>
           <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img id = "c1" class="rounded-circle" src="image1.jpg" alt="Generic placeholder image" width="240" height="240">
+            <h2>Heading</h2>
+            <p>This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
         </div>
 
@@ -188,11 +203,14 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Dygraph <span class="text-muted">Ana;ysis.</span></h2>
+            <p class="lead">This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img id = "c1" class="rounded-circle" src="image1.jpg" alt="Generic placeholder image" width="240" height="240">
+            <h2>Heading</h2>
+            <p>This Pie-Chart shows the total vegetarian/vegan restaurants by state. Analysis shows California is having most Vegetarian restaurants , followed by New York state.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
         </div>
 
