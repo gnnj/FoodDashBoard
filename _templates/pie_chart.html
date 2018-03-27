@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <title>Pie Chart Page</title>
+
+    <!-- Bootstrap link-->
+    <link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!--d3 required for bubble chart to work -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+    
+
+  </head>
+
+ <body>
+    <div class="container" style="width: 95%">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Jumbotron -->
+                <div class="jumbotron" style="text-align: center">
+                    <div class="container">
+                        <h1>Vegan Data Visualization!</h1>
+                        <p>Use the interactive charts below to explore the restarant dataset.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Main Body -->
+        <div class ="row">
+        		<!-- State selection side panel added to visualize data by_state"-->
+        		<div class="col-md-12">
+        			 <div class="row">
+                    	<div class="col-md-12">
+
+            			<div class="panel panel-default" style="overflow:auto"; overflow-wrap:break-word">
+            				<div class ="panel-body" styles="background-color:#afd275">
+            					<div class="form-group">
+            						<label for ="selDataset">Choose a State:</label>
+
+            					</select>
+            				</div>
+
+            			</div>
+            		</div>
+
+            	 </div>
+                   
+                    <div class="row">
+                        <div class="col-md-12">
+
+                <!--Pie Chart -->
+                	<div class="col-md-12">
+                		<div id = "piePlot" style="width: 100%,height: 100%">
+
+                </div>
+        		</div>
+
+
+        		</div>
+    <script type='text/javascript' src='pie_chart.js'></script>
+  </body>
+</html>

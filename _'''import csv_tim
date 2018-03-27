@@ -1,0 +1,40 @@
+'''import csv
+import os
+
+fileNumber = ['1','2']
+
+#The following variables have to be outside of the for loop below to work
+totalVotes = 0
+candidateList = []
+uniqueList= [] 
+uniqueVoteCount = []
+
+for numToCheck in fileNumber:
+
+    electionCSV = os.path.join('raw_data', 'election_data_' + numToCheck + '.csv')
+
+    with open(electionCSV,'r') as csvFile:
+
+        csvreader = csv.reader(csvFile, delimiter=',')
+
+        # Skip header row in the .csv
+        next(csvreader, None)
+
+        for row in csvreader:
+            candidateList.append(row[2])
+
+#Dictionary for k:v pairs
+d = {}
+
+#This loop must be outside numToCheck for loop to count all .csv items
+for row in candidateList:
+    
+    if row not in uniqueList:
+        uniqueCount = candidateList.count(row)
+        uniqueList.append(row)
+        d[row]=uniqueCount
+
+#max() method plus dictionary access to pull k:v pairs
+totalVotes = len(candidateList)
+winner = max(d, key=d.get)
+'''
