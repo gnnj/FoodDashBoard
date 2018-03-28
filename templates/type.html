@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <title>Chart.js </title>      <!-- import plugin script -->   <script src='static/Chart.min.js'></script>   </head><body>
+  
+<p>
+<ul class="nav nav-tabs nav-justified">
+  <li class="nav-item">
+    <a class="nav-link active" href="/">Veggietopia</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/by_state">State Bar Graph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/by_type">Type Bar Graph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/dygraph">DyGraph</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/pie">Pie Chart</a>
+  </li>
+</ul>
+</p>
+
+<div class="jumbotron">
+  <h1 class="display-6">Total Vegetarian Restaurants by Type</h1>
+</div>
+<canvas id="myChart" width="400" height="1500"></canvas>
+<script>
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+        datasets: [{
+            label: '# of Restaurants',
+            data: [{% for item in values %}
+                      {{item}},
+                    {% endfor %}],
+            // backgroundColor: [
+            //     'rgba(255, 99, 132, 0.2)',
+            //     'rgba(54, 162, 235, 0.2)',
+            //     'rgba(255, 206, 86, 0.2)',
+            //     'rgba(75, 192, 192, 0.2)',
+            //     'rgba(153, 102, 255, 0.2)',
+            //     'rgba(255, 159, 64, 0.2)'
+            // ],
+            // borderColor: [
+            //     'rgba(255,99,132,1)',
+            //     'rgba(54, 162, 235, 1)',
+            //     'rgba(255, 206, 86, 1)',
+            //     'rgba(75, 192, 192, 1)',
+            //     'rgba(153, 102, 255, 1)',
+            //     'rgba(255, 159, 64, 1)'
+            // ],
+            borderWidth: 10
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});  
+   // bar chart data
+   // var barData = {
+   // labels : [{% for item in labels %}
+   //                "{{item}}",
+   //            {% endfor %}],
+   // datasets : [
+   //    {
+   //          fillColor: "rgba(151,187,205,0.2)",
+   //          strokeColor: "rgba(151,187,205,1)",
+   //          pointColor: "rgba(151,187,205,1)",
+   //       data : [{% for item in values %}
+   //                    {{item}},
+   //                  {% endfor %}]
+   //    }
+   //    ]
+   // }
+ 
+   // // get bar chart canvas
+   // var mychart = document.getElementById("chart").getContext("2d");
+ 
+   // steps = 10
+   // max = 1700
+   // // draw bar chart
+   // new Chart(mychart).Bar(barData, {
+   //      scaleOverride: true,
+   //      scaleSteps: steps,
+   //      scaleStepWidth: Math.ceil(max / steps),
+   //      scaleStartValue: 0,
+   //      scaleShowVerticalLines: true,
+   //      scaleShowGridLines : true,
+   //      barShowStroke : true,
+   //      scaleShowLabels: true
+   // });
+ 
+</script>
+</body></html>
