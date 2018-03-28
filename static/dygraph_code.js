@@ -1,10 +1,10 @@
 //declare cleaned array of price/rating as var without assignment definition 
 var newArr = new Array();
-var flatArr = new Array();
-var test = [];
+//var flatArr = new Array(); //used for testing methods to pass/format response to dygraph
 
 $(document).ready(function(){
-function stateList(){    
+//test stateList() func to test API route
+/*function stateList(){    
 d3.json("/states_d", function(error, data) {
     if (error) return console.warn(error);
 
@@ -13,7 +13,7 @@ d3.json("/states_d", function(error, data) {
         }
     
     });
-};
+};*/
 
 // Create dropdown menu
 function dropDownEvent() {
@@ -48,6 +48,13 @@ function init(state){
             var value = response[i][1];
             response[i][2] = parseFloat(response[i][2]);
 
+            
+            //Flask route that returns price translated to the below the approx range for signs
+            //display as key on hover (if possible)
+            /*$= under $10 (5-10)
+            $$= $11-$30 [11]
+            $$$= $31-$60 [31]
+            $$$$= above $61*/ 
             // check to see if our new variable is $, $$, $$$, or $$$$
             if (value == "$"){
                 // if it's $ then replace the value in the array with the integer 1
@@ -72,8 +79,8 @@ function init(state){
             newArr.push([response[i][2],response[i][1]]);
             //console.log(newArr);
         }  
-        
-        //flatArr = newArr.reshape(newArr.length,1);
+        //Inital impression was that the chart was rendered in error by having an array of arrays due to outer array
+            //flatArr = newArr.reshape(newArr.length,1);
         console.log(newArr);
 
         // --------------------------------------------------------------------------------
@@ -88,13 +95,13 @@ function init(state){
 
 
 
-
+//Unused in current method to pass data to dygraph; may be useful for other data sources or types
 function flatten(newArr) {
     return newArr.reduce(function (flat, toFlatten) {
     return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
   }, []);
 };
-
+//Unused in current method to pass data to dygraph; may be useful for other data sources or types
 Array.prototype.reshape =function(rows, cols) {
   var copy = this.slice(0); // Copy all elements.
   this.length = 0; // Clear out existing array.
@@ -111,9 +118,6 @@ Array.prototype.reshape =function(rows, cols) {
   }
 };
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////////
 //Javascript for dygraph
 function updateDygraph(newArr){
@@ -123,13 +127,16 @@ function updateDygraph(newArr){
     document.getElementById("graphdiv"),
 
             //Dygraph chart data in array format
-                //[dygraphdata]
+                
                 /*[1,10],
                 [2,20],
                 [3,30],
                 [4,40]*/
+
+                //create an array each loop grab value from array ---> then push + examine in console 
+                //pass in array variable
                 newArr
-                //create an array each loop grab value from array ---> then push to extermine
+               
               ,
                 { //Dygraph chart options
                 title: "Rating and Price Range Interactive Charts",
@@ -154,7 +161,6 @@ function updateDygraph(newArr){
     })
 
 };
-
 function updateDygraph2(newArr){
       var g, regression, clearLines;  // defined below
       document.getElementById("ry1").onclick = function() { regression(1); };
@@ -289,18 +295,7 @@ init(defaultState);
 
 });
 
-
-
-
-//display as key on hover (if possible)
-/*$= under $10 (5-10)
-$$= $11-$30 [11]
-$$$= $31-$60 [31]
-$$$$= above $61*/ 
-
-//State? - string/varchar
-//Flask route that returns price translated to the above the approx range for signs
-// and is responsive by state
+//Dygraph documentation:
 //http://dygraphs.com/options.html#Chart%20labels
 //https://developers.google.com/chart/interactive/docs/reference?csw=1#QueryResponse_getDataTable
 //https://developers.google.com/chart/interactive/docs/reference?csw=1#DataTable
